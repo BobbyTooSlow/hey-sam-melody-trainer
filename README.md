@@ -1,5 +1,9 @@
-# KENNY PICKETT? v1.7 — Offline Guitar Edition
+KENNY PICKETT? v1.8 — Offline Piano + Guitar
 
-Includes 37 genuine Meta Open Sound steel-string guitar OGG recordings (E2–E5), medium velocity, CC0. Upload **all** files and folders to your GitHub Pages repository root, preserving `assets/audio/` and `sw.js`. Open the site online and allow the first visit to finish caching before testing offline. The service worker pre-caches all recordings. iOS may clear website caches; for the most reliable use, add the site to your Home Screen. If samples cannot decode, the app uses its synthesized fallback.
+Upload index.html, sw.js and both assets/audio and assets/piano directories to the GitHub Pages repository, preserving filenames. Open once online to cache.
 
-Source: https://github.com/facebookincubator/Meta-open-sound
+App Instrument: Acoustic Guitar (37 bundled Meta samples, E2–E5 with higher notes transposed) or Piano (57 bundled Meta samples, E2–C7). User Instrument controls generated pitch range.
+
+Pause Session suspends the AudioContext (freezing audio time and timeline); Next is disabled while paused. Use headphones for microphone mode.
+
+Samples: Meta Open Sound, CC0. https://github.com/facebookincubator/Meta-open-sound
