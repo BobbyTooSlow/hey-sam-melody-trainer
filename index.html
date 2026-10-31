@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hey Sam — Melody Trainer</title><style>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>KENNY PICKETT? — Melody Ear Trainer (Offline)</title><style>
 *{box-sizing:border-box}html{width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;text-size-adjust:100%}body{font:12px system-ui,-apple-system,sans-serif;background:#111b20;color:#f3f5f4;margin:0;width:100%;overflow-x:hidden}main{width:100%;max-width:760px;margin:auto;padding:5px}h1{font-size:17px;margin:0;white-space:nowrap}p{color:#bdc9c9}.panel{background:#1d2b31;border:1px solid #35474c;border-radius:9px;padding:6px;margin:4px 0}.settings{display:flex;flex-direction:column;gap:0}.settings>.settings-row,.settings>.mix-row{padding:5px 0;border-bottom:1px solid #3b5056}.settings>:last-child{border-bottom:0}.settings-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;align-items:end}.settings-row.two{grid-template-columns:repeat(2,minmax(0,1fr))}.settings-row.header{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center}.settings-row label{min-width:0;display:block;font-size:10px;color:#c9d6d6;white-space:nowrap}.settings-row select{display:block;width:100%;min-width:0;height:29px;padding:3px 4px;margin-top:2px;background:#101d22;color:white;border:1px solid #567078;border-radius:5px;font-size:12px}.mix-row{display:flex;justify-content:flex-end;align-items:center;gap:5px}.sound-box{min-width:0}.sound-box label{font-size:10px;color:#c9d6d6}.sound-box select{width:100%;background:#101d22;color:white;border:1px solid #567078;border-radius:5px;height:29px;font-size:11px}.mix-controls{display:flex;justify-content:flex-end;gap:5px;min-width:0;width:100%}.vol-item{display:flex;flex-direction:column;align-items:center;gap:2px;color:#c9d6d6;font-size:10px;min-width:40px}.vol-item input[type=range]{appearance:slider-vertical;-webkit-appearance:slider-vertical;width:28px;height:115px;writing-mode:vertical-lr;direction:rtl;margin:0;accent-color:#3aab88}.vol-item output{font-size:15px;font-weight:750;font-variant-numeric:tabular-nums}.tempo-buttons{display:flex;flex-direction:column;gap:3px;height:115px;align-self:flex-start;margin-top:12px}.tempo-buttons button{margin:0;padding:2px 4px;font-size:10px;flex:1;min-height:0}button{border:0;border-radius:6px;padding:7px 8px;background:#3aab88;color:#061a13;font-weight:700;margin:2px;font-size:11px}button.secondary{background:#3b5159;color:white}.controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px}.controls button{width:100%;margin:0;min-height:68px}#status{font-weight:700;color:#94dfc4;margin:4px 0;font-size:12px}#phrase-wrap{position:relative;min-height:40px}#notes{display:flex;flex-wrap:wrap;gap:3px;min-height:36px;margin:4px 0}.note{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:28px;padding:2px 4px;background:#101d22;border-radius:5px}.note-name{font-size:14px;font-weight:650}.degree{font-size:10px;color:#94dfc4}.notes-label{align-self:center;font-size:11px;color:#bdc9c9;margin-right:2px}.barline{width:2px;align-self:stretch;background:#91a9a8;opacity:.8;margin:2px 3px}#reveal{position:absolute;inset:0;width:100%;margin:0;background:#314d55;color:#fff;border:1px solid #6d9a99;font-size:13px;z-index:1}#reveal[hidden]{display:none}small{color:#afc2c4;font-size:10px;line-height:1.2;display:block}@media(max-width:370px){main{padding:4px}.panel{padding:5px}.settings-row{gap:3px}.settings-row label{font-size:9px}.settings-row select{font-size:11px;padding:2px;height:27px}.vol-item{min-width:34px}.mix-controls{gap:2px}.vol-item input[type=range]{height:100px}.tempo-buttons{height:100px}button{padding:6px;font-size:10px}}@media(max-height:750px){.settings{gap:2px}.vol-item input[type=range]{height:95px}.tempo-buttons{height:95px}.panel{margin:3px 0;padding:5px}small{font-size:9px}}
 
 .key-pair{display:flex;gap:3px;min-width:0}.key-pair select:first-child{flex:0 0 39%;width:39%}.key-pair select:last-child{flex:1;width:0}
@@ -13,6 +13,8 @@
 .mic-setting{display:flex;align-items:center;justify-content:space-between;gap:10px;color:#d9e5e3;font-size:12px;padding:5px 2px}.mic-setting input{width:20px;height:20px;accent-color:#3aab88}.mic-setting label{display:flex;align-items:center;gap:8px;cursor:pointer}
 .live-head{display:flex;flex-direction:column;gap:5px;font-size:17px}#micstate{font-size:12px;color:#9fcebd}#liveNote{font-size:clamp(64px,19vw,110px);font-weight:800;color:#a3f0d0;line-height:1.1}#liveDetails{font-size:16px;color:#e0eded}.live-hint{font-size:11px;color:#a8bec2}.input-level{width:min(250px,85%);height:9px;background:#102126;border:1px solid #547077;border-radius:10px;overflow:hidden}.input-level-fill{height:100%;width:0;background:#3aab88;transition:width .09s}#levelText{font-size:11px;color:#bdd2d1}
 
+.brand{font-size:19px;line-height:.9;letter-spacing:.07em;white-space:normal;display:flex;align-items:flex-end;gap:7px;padding:2px 0}
+.brand .version{font-size:10px;font-weight:400;color:#bdc9c9;letter-spacing:0;align-self:flex-end;padding-bottom:2px}
 /* Phrase timeline: one verdict per note onset; no retries within a note. */
 #livePanel{justify-content:flex-start;gap:5px;padding:7px 6px;overflow:hidden}
 #livePanel .live-head{flex-direction:row;align-items:center;justify-content:space-between;width:100%;font-size:12px}
@@ -42,14 +44,14 @@
 @media(max-width:370px){.tbar{min-width:105px}#livePanel{padding:5px 3px}}
 </style></head><body><main><section class="panel settings" id="settingsPanel" aria-label="Practice settings">
 <div id="livePanel" hidden aria-live="off"><div class="live-head"><strong>Phrase Timeline</strong><span id="micstate">Starting microphone…</span></div><div class="timeline-options"><label>Display <select id="timelineNotation"><option value="degree">Scale Degrees</option><option value="letter">Note Letters</option></select></label><label>View <select id="timelineView"><option value="practice">Practice</option><option value="study">Study</option></select></label></div><div id="timeline" aria-label="Beat-aligned phrase timeline"></div><div id="timelineHint">Headphones recommended when listening is on.</div><div class="live-note" id="liveNote">—</div><div id="liveDetails">Play a single note on your instrument</div><div class="input-level" role="meter" aria-label="Microphone input level"><div class="input-level-fill" id="levelFill"></div></div><div id="levelText">Input level: —</div><div class="live-hint" id="liveHint">Last detected note stays visible; dim means no clear note is sounding.</div></div>
-<div class="settings-row header"><h1>Hey Sam! <span style="font-size:10px;font-weight:400;color:#bdc9c9">v1.5</span></h1><label>Instrument<select id="instrument"><option>Guitar</option><option>Mandolin</option><option>Mandola</option></select></label></div>
+<div class="settings-row header"><h1 class="brand">KENNY<br>PICKETT?<span class="version">v1.6</span></h1><label>Instrument<select id="instrument"><option>Guitar</option><option>Mandolin</option><option>Mandola</option></select></label></div>
 <div class="settings-row"><label>Key<div class="key-pair"><select id="key"></select><select id="quality" aria-label="Major or minor"><option value="major">Major</option><option value="minor">Minor</option></select></div></label><label>Note Selection<select id="scale"><option value="major">Full Major Scale</option><option value="pent">Major Pentatonic Scale</option><option value="triad">Major Triad</option></select></label><label>Range<select id="octaves"><option value="1">1 octave</option><option value="2">2 octaves</option></select></label></div>
 <div class="settings-row"><label>Meter<select id="meter"><option value="4">4/4</option><option value="3">3/4</option></select></label><label>Rhythm<select id="rhythm"><option value="q">Quarter</option><option value="qh">Quarter / half</option><option value="eqh">8th / ¼ / ½</option></select></label><label>Melodic difficulty<select id="difficulty"><option value="easy">Easy</option><option value="medium" selected>Medium</option><option value="hard">Hard</option><option value="free">Unrestricted</option></select></label></div>
 <div class="settings-row"><label>Phrase notes<select id="count"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select></label><label>Start note<select id="start"><option value="tonic">Tonic</option><option value="triad">Triad tone</option><option value="any">Any note</option></select></label><label>End note<select id="cadence"><option value="tonic">Tonic</option><option value="chord">Triad tone</option><option value="open">Anticipatory Notes</option><option value="any">Any note</option></select></label></div>
 <div class="mix-row" id="sliderRow"><div class="mix-controls"><label class="vol-item" for="mastervol">Master<input id="mastervol" type="range" min="0" max="100" value="65"><output id="masterval">65</output></label><label class="vol-item divider-before" for="clickvol">Click<input id="clickvol" type="range" min="0" max="100" value="65"><output id="clickval">65</output></label><label class="vol-item" for="melvol">Melody<input id="melvol" type="range" min="0" max="100" value="30"><output id="melval">30</output></label><label class="vol-item divider-before" for="tempo">Tempo<input id="tempo" type="range" min="40" max="180" step="5" value="80"><output id="tempoval">80</output></label><div class="tempo-buttons"><button class="secondary" id="faster" type="button">Faster</button><button class="secondary" id="slower" type="button">Slower</button></div></div></div>
 <div class="settings-row two"><label>Playback mode<select id="mode"><option value="loop">Play Along</option><option value="repeat">Listen and Repeat</option></select></label><label>Advancement<select id="advance"><option value="manual">User controlled</option><option value="auto">Automatic (future)</option></select></label></div>
 <div class="mic-setting" id="micSetting"><label for="listen"><input type="checkbox" id="listen"> Listen to My Playing</label><span id="micSettingHint">Off · normal playback</span></div>
-</section><section class="panel"><div class="controls"><button id="startbtn" class="start-button">Start Session</button><button class="secondary next-button" id="next">Next Phrase</button><button class="secondary stop-button stop-all" id="stopall">Stop All</button><button class="secondary stop-button" id="stopmel">Stop Melody</button></div><p id="status">Ready</p><div id="phrase-wrap"><div id="notes" aria-live="polite"></div><button id="reveal" type="button">Show Phrase</button></div><small>Browser prototype v1.5. Beat-aligned phrase timeline with one-shot pitch feedback. Adaptive background-noise calibration with dBFS and pitch-confidence feedback. Guitar phrases stay between E2 and E5 (12th fret). Microphone is optional and off by default. Uses the default soft plucked tone. If silent, check iPhone Silent Mode. Voice commands and automatic grading are not yet implemented.</small></section></main><script>
+</section><section class="panel"><div class="controls"><button id="startbtn" class="start-button">Start Session</button><button class="secondary next-button" id="next">Next Phrase</button><button class="secondary stop-button stop-all" id="stopall">Stop All</button><button class="secondary stop-button" id="stopmel">Stop Melody</button></div><p id="status">Ready</p><div id="phrase-wrap"><div id="notes" aria-live="polite"></div><button id="reveal" type="button">Show Phrase</button></div><small>Browser prototype v1.7. Beat-aligned phrase timeline with one-shot pitch feedback. Adaptive background-noise calibration with dBFS and pitch-confidence feedback. Guitar phrases stay between E2 and E5 (12th fret). Microphone is optional and off by default. Uses Meta Open Sound CC0 steel-string guitar samples when available, with a synthesized fallback. 37 real guitar samples are bundled for offline use; headphones recommended with microphone listening. If silent, check iPhone Silent Mode. Voice commands and automatic grading are not yet implemented.</small></section></main><script>
 const $=id=>document.getElementById(id), keys=['C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B'], names=['C','C#','D','Eb','E','F','F#','G','Ab','A','Bb','B']; keys.forEach(k=>{let o=document.createElement('option');o.value=k;o.textContent=k;$('key').append(o)});$('key').value='G';
 const SETTINGS_KEY='hey-sam-settings-v1';
 const settingIds=['instrument','key','quality','scale','octaves','meter','rhythm','difficulty','count','start','cadence','mastervol','clickvol','melvol','tempo','mode','advance','listen','timelineNotation','timelineView'];
@@ -121,7 +123,38 @@ function renderNotes(base){const host=$('notes');host.replaceChildren();const la
 for(const [id,out] of [['mastervol','masterval'],['clickvol','clickval'],['melvol','melval'],['tempo','tempoval']]){$(id).addEventListener('input',()=>$(out).textContent=$(id).value)}
 for(const [id,out] of [['mastervol','masterval'],['clickvol','clickval'],['melvol','melval'],['tempo','tempoval']])$(out).textContent=$(id).value;
 // Procedural plucked-string samples: band-limited, damped delay-line synthesis.
-// No recorded instrument samples are bundled in this version.
+// 37 original Meta Open Sound steel-string recordings are bundled locally.
+// Meta Open Sound steel-string guitar (CC0): https://github.com/facebookincubator/Meta-open-sound
+// Chromatic medium-velocity OGG recordings are loaded locally and cached in memory.
+// The app remains playable if offline, a sample is unavailable, or OGG decoding fails.
+const META_BASE='./assets/audio/';
+const metaBuffers=new Map(),metaRequests=new Map();
+let sampleStatus='Local guitar samples loading…';
+const LOCAL_SAMPLES={"40":"INSGuitarSteel_StringLowE_Vel02_E2_01.ogg","41":"INSGuitarSteel_StringLowE_Vel02_F2_01.ogg","42":"INSGuitarSteel_StringLowE_Vel02_Fs2_01.ogg","43":"INSGuitarSteel_StringLowE_Vel02_G2_01.ogg","44":"INSGuitarSteel_StringLowE_Vel02_Gs2_01.ogg","45":"INSGuitarSteel_StringLowE_Vel02_A2_01.ogg","46":"INSGuitarSteel_StringLowE_Vel02_As2_01.ogg","47":"INSGuitarSteel_StringA_Vel02_B2_01.ogg","48":"INSGuitarSteel_StringA_Vel02_C3_01.ogg","49":"INSGuitarSteel_StringA_Vel02_Cs3_01.ogg","50":"INSGuitarSteel_StringA_Vel02_D3_01.ogg","51":"INSGuitarSteel_StringA_Vel02_Ds3_01.ogg","52":"INSGuitarSteel_StringA_Vel02_E3_01.ogg","53":"INSGuitarSteel_StringD_Vel02_F3_01.ogg","54":"INSGuitarSteel_StringD_Vel02_Fs3_01.ogg","55":"INSGuitarSteel_StringD_Vel02_G3_01.ogg","56":"INSGuitarSteel_StringD_Vel02_Gs3_01.ogg","57":"INSGuitarSteel_StringD_Vel02_A3_01.ogg","58":"INSGuitarSteel_StringG_Vel02_As3_01.ogg","59":"INSGuitarSteel_StringG_Vel02_B3_01.ogg","60":"INSGuitarSteel_StringG_Vel02_C4_01.ogg","61":"INSGuitarSteel_StringG_Vel02_Cs4_01.ogg","62":"INSGuitarSteel_StringG_Vel02_D4_01.ogg","63":"INSGuitarSteel_StringB_Vel02_Ds4_01.ogg","64":"INSGuitarSteel_StringB_Vel02_E4_01.ogg","65":"INSGuitarSteel_StringB_Vel02_F4_01.ogg","66":"INSGuitarSteel_StringB_Vel02_Fs4_01.ogg","67":"INSGuitarSteel_StringHighE_Vel02_G4_01.ogg","68":"INSGuitarSteel_StringHighE_Vel02_Gs4_01.ogg","69":"INSGuitarSteel_StringHighE_Vel02_A4_01.ogg","70":"INSGuitarSteel_StringHighE_Vel02_As4_01.ogg","71":"INSGuitarSteel_StringHighE_Vel02_B4_01.ogg","72":"INSGuitarSteel_StringHighE_Vel02_C5_01.ogg","73":"INSGuitarSteel_StringHighE_Vel02_Cs5_01.ogg","74":"INSGuitarSteel_StringHighE_Vel02_D5_01.ogg","75":"INSGuitarSteel_StringHighE_Vel02_Ds5_01.ogg","76":"INSGuitarSteel_StringHighE_Vel02_E5_01.ogg"};
+function sampleFilename(midi){return LOCAL_SAMPLES[midi]||null;}
+async function loadMetaNote(midi){
+ if(metaBuffers.has(midi))return metaBuffers.get(midi);
+ if(metaRequests.has(midi))return metaRequests.get(midi);
+ const filename=sampleFilename(midi);
+ if(!filename||!ctx)return null;
+ const promise=(async()=>{
+  try{
+   const response=await fetch(META_BASE+filename);
+   if(!response.ok)throw Error('HTTP '+response.status);
+   const bytes=await response.arrayBuffer();
+   const buffer=await ctx.decodeAudioData(bytes);
+   metaBuffers.set(midi,buffer);sampleStatus='Bundled steel-string guitar';
+   return buffer;
+  }catch(err){console.info('Sample unavailable; using synthesized guitar',filename,err);sampleStatus='Synthesized fallback · local sample missing';return null;}
+  finally{metaRequests.delete(midi);}
+ })();
+ metaRequests.set(midi,promise);return promise;
+}
+function preloadPhraseSamples(){
+ if(!ctx||!phrase.length)return;
+ const unique=[...new Set(phrase.map(n=>n.midi))];
+ unique.forEach(midi=>{void loadMetaNote(midi)});
+}
 function guitarBuffer(midi){
  const cacheKey='soft:'+midi;
  if(guitarSamples.has(cacheKey))return guitarSamples.get(cacheKey);
@@ -162,8 +195,9 @@ function initAudio(){
  master.gain.value=num('mastervol')/100;
 }
 function tone(midi,when,duration,vol){
- const src=ctx.createBufferSource(), gain=ctx.createGain();src.buffer=guitarBuffer(midi);
- const end=Math.max(.12,Math.min(2.65,duration+.18));
+ const src=ctx.createBufferSource(), gain=ctx.createGain();src.buffer=metaBuffers.get(midi)||guitarBuffer(midi);
+ const sampled=metaBuffers.has(midi);
+ const end=Math.max(.12,Math.min(sampled?6:2.65,duration+.18));
  gain.gain.setValueAtTime(0,when);gain.gain.linearRampToValueAtTime(Math.max(.0001,vol),when+.012);
  gain.gain.setValueAtTime(Math.max(.0001,vol),when+Math.max(.013,end-.12));
  gain.gain.exponentialRampToValueAtTime(.0001,when+end);
@@ -384,7 +418,7 @@ function stop(){
 $('startbtn').onclick=async()=>{
  stop();
  try{ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();await ctx.resume();}catch(e){$('status').textContent='Could not start audio';return;}
- initAudio();makePhrase();activeMode=$('mode').value;pendingMode=null;melodyStopped=false;countBeats=num('meter');tickIndex=0;nextTick=ctx.currentTime+.1;timelineStart=nextTick+countBeats*60/num('tempo');session=true;timelineEnabled=true;timelineSlot=-1;resetTimeline();
+ initAudio();makePhrase();preloadPhraseSamples();activeMode=$('mode').value;pendingMode=null;melodyStopped=false;countBeats=num('meter');tickIndex=0;nextTick=ctx.currentTime+.1;timelineStart=nextTick+countBeats*60/num('tempo');session=true;timelineEnabled=true;timelineSlot=-1;resetTimeline();
  const listening=$('listen').checked;updateLiveHeight();$('settingsPanel').classList.toggle('session-active',listening);$('livePanel').hidden=!listening;
  $('liveNote').textContent='—';$('liveNote').style.opacity='1';$('levelFill').style.width='0';$('levelText').textContent='Input level: —';lastDetectedAt=0;$('liveDetails').textContent='Play a single note on your instrument';
  $('startbtn').classList.add('playing');$('stopall').classList.add('playing');timer=setInterval(scheduler,25);scheduler();$('status').textContent='Playing · count-in 1 measure';
@@ -395,7 +429,9 @@ document.addEventListener('visibilitychange',()=>{if(document.visibilityState===
 $('mode').onchange=()=>{pendingMode=$('mode').value;$('status').textContent='Mode change queued: '+(pendingMode==='loop'?'Play Along':'Listen and Repeat')};
 $('stopmel').onclick=()=>{melodyStopped=true;$('status').textContent='Melody stopped; metronome continues (scheduled notes may finish)'};
 $('stopall').onclick=stop;
-$('next').onclick=()=>{makePhrase();if(session){tickIndex=0;countBeats=num('meter');nextTick=Math.max(ctx.currentTime+.1,nextTick);timelineStart=nextTick+countBeats*60/num('tempo');timelineSlot=-1;resetTimeline();}$('status').textContent='New phrase ready'};
+$('next').onclick=()=>{makePhrase();preloadPhraseSamples();if(session){tickIndex=0;countBeats=num('meter');nextTick=Math.max(ctx.currentTime+.1,nextTick);timelineStart=nextTick+countBeats*60/num('tempo');timelineSlot=-1;resetTimeline();}$('status').textContent='New phrase ready'};
 
 $('slower').onclick=()=>{$('tempo').value=clamp(num('tempo')-5,40,180);$('tempoval').textContent=$('tempo').value;saveSettings()};$('faster').onclick=()=>{$('tempo').value=clamp(num('tempo')+5,40,180);$('tempoval').textContent=$('tempo').value;saveSettings()};
+
+if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(()=>{});}
 </script></body></html>
