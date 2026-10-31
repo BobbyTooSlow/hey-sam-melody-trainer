@@ -7,22 +7,25 @@
 @media(max-width:370px){.vol-item input[type=range]{height:112px;width:36px}.tempo-buttons{height:112px}.vol-item output{font-size:16px}}
 @media(max-height:750px){.vol-item input[type=range]{height:110px}.tempo-buttons{height:110px}}
 
-.settings{position:relative}.settings.session-active>.settings-row,.settings.session-active>.mix-row{visibility:hidden;pointer-events:none}
-#livePanel[hidden]{display:none}#livePanel{position:absolute;inset:0;z-index:3;border-radius:9px;background:#1b3035;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:12px;gap:12px}
+.settings{position:relative}.settings.session-active>.settings-row{visibility:hidden;pointer-events:none}
+#livePanel[hidden]{display:none}#livePanel{position:absolute;top:0;left:0;right:0;bottom:auto;height:var(--upper-height,200px);z-index:3;border-radius:9px;background:#1b3035;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:12px;gap:12px}
+.settings-row select{color-scheme:dark} .settings-row select option{background:#101d22;color:#f3f5f4} .settings-row select::-webkit-calendar-picker-indicator{filter:invert(.8)}
+.mic-setting{display:flex;align-items:center;justify-content:space-between;gap:10px;color:#d9e5e3;font-size:12px;padding:5px 2px}.mic-setting input{width:20px;height:20px;accent-color:#3aab88}.mic-setting label{display:flex;align-items:center;gap:8px;cursor:pointer}
 .live-head{display:flex;flex-direction:column;gap:5px;font-size:17px}#micstate{font-size:12px;color:#9fcebd}#liveNote{font-size:clamp(64px,19vw,110px);font-weight:800;color:#a3f0d0;line-height:1.1}#liveDetails{font-size:16px;color:#e0eded}.live-hint{font-size:11px;color:#a8bec2}
 </style></head><body><main><section class="panel settings" id="settingsPanel" aria-label="Practice settings">
-<div id="livePanel" hidden aria-live="off"><div class="live-head"><strong>Live Note Detector</strong><span id="micstate">Starting microphone…</span></div><div class="live-note" id="liveNote">—</div><div id="liveDetails">Play a single note on your instrument</div><div class="live-hint" id="liveHint">This is a pitch display, not a performance score yet.</div></div>
-<div class="settings-row header"><h1>Hey Sam! <span style="font-size:10px;font-weight:400;color:#bdc9c9">v0.9</span></h1><label>Instrument<select id="instrument"><option>Guitar</option><option>Mandolin</option><option>Mandola</option></select></label></div>
+<div id="livePanel" hidden aria-live="off"><div class="live-head"><strong>Live Note Detector</strong><span id="micstate">Starting microphone…</span></div><div class="live-note" id="liveNote">—</div><div id="liveDetails">Play a single note on your instrument</div><div class="live-hint" id="liveHint">Last detected note stays visible; dim means no clear note is sounding.</div></div>
+<div class="settings-row header"><h1>Hey Sam! <span style="font-size:10px;font-weight:400;color:#bdc9c9">v1.0</span></h1><label>Instrument<select id="instrument"><option>Guitar</option><option>Mandolin</option><option>Mandola</option></select></label></div>
 <div class="settings-row"><label>Key<div class="key-pair"><select id="key"></select><select id="quality" aria-label="Major or minor"><option value="major">Major</option><option value="minor">Minor</option></select></div></label><label>Note Selection<select id="scale"><option value="major">Full Major Scale</option><option value="pent">Major Pentatonic Scale</option><option value="triad">Major Triad</option></select></label><label>Range<select id="octaves"><option value="1">1 octave</option><option value="2">2 octaves</option></select></label></div>
 <div class="settings-row"><label>Meter<select id="meter"><option value="4">4/4</option><option value="3">3/4</option></select></label><label>Rhythm<select id="rhythm"><option value="q">Quarter</option><option value="qh">Quarter / half</option><option value="eqh">8th / ¼ / ½</option></select></label><label>Melodic difficulty<select id="difficulty"><option value="easy">Easy</option><option value="medium" selected>Medium</option><option value="hard">Hard</option><option value="free">Unrestricted</option></select></label></div>
 <div class="settings-row"><label>Phrase notes<select id="count"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select></label><label>Start note<select id="start"><option value="tonic">Tonic</option><option value="triad">Triad tone</option><option value="any">Any note</option></select></label><label>End note<select id="cadence"><option value="tonic">Tonic</option><option value="chord">Triad tone</option><option value="open">Anticipatory Notes</option><option value="any">Any note</option></select></label></div>
-<div class="mix-row"><div class="mix-controls"><label class="vol-item" for="mastervol">Master<input id="mastervol" type="range" min="0" max="100" value="65"><output id="masterval">65</output></label><label class="vol-item divider-before" for="clickvol">Click<input id="clickvol" type="range" min="0" max="100" value="65"><output id="clickval">65</output></label><label class="vol-item" for="melvol">Melody<input id="melvol" type="range" min="0" max="100" value="30"><output id="melval">30</output></label><label class="vol-item divider-before" for="tempo">Tempo<input id="tempo" type="range" min="40" max="180" step="5" value="80"><output id="tempoval">80</output></label><div class="tempo-buttons"><button class="secondary" id="faster" type="button">Faster</button><button class="secondary" id="slower" type="button">Slower</button></div></div></div>
+<div class="mix-row" id="sliderRow"><div class="mix-controls"><label class="vol-item" for="mastervol">Master<input id="mastervol" type="range" min="0" max="100" value="65"><output id="masterval">65</output></label><label class="vol-item divider-before" for="clickvol">Click<input id="clickvol" type="range" min="0" max="100" value="65"><output id="clickval">65</output></label><label class="vol-item" for="melvol">Melody<input id="melvol" type="range" min="0" max="100" value="30"><output id="melval">30</output></label><label class="vol-item divider-before" for="tempo">Tempo<input id="tempo" type="range" min="40" max="180" step="5" value="80"><output id="tempoval">80</output></label><div class="tempo-buttons"><button class="secondary" id="faster" type="button">Faster</button><button class="secondary" id="slower" type="button">Slower</button></div></div></div>
 <div class="settings-row two"><label>Playback mode<select id="mode"><option value="loop">Play Along</option><option value="repeat">Listen and Repeat</option></select></label><label>Advancement<select id="advance"><option value="manual">User controlled</option><option value="auto">Automatic (future)</option></select></label></div>
-</section><section class="panel"><div class="controls"><button id="startbtn" class="start-button">Start Session</button><button class="secondary next-button" id="next">Next Phrase</button><button class="secondary stop-button stop-all" id="stopall">Stop All</button><button class="secondary stop-button" id="stopmel">Stop Melody</button></div><p id="status">Ready</p><div id="phrase-wrap"><div id="notes" aria-live="polite"></div><button id="reveal" type="button">Show Phrase</button></div><small>Browser prototype v0.9. Uses the default soft plucked tone. If silent, check iPhone Silent Mode. Voice commands and automatic grading are not yet implemented.</small></section></main><script>
+<div class="mic-setting" id="micSetting"><label for="listen"><input type="checkbox" id="listen"> Listen to My Playing</label><span id="micSettingHint">Off · normal playback</span></div>
+</section><section class="panel"><div class="controls"><button id="startbtn" class="start-button">Start Session</button><button class="secondary next-button" id="next">Next Phrase</button><button class="secondary stop-button stop-all" id="stopall">Stop All</button><button class="secondary stop-button" id="stopmel">Stop Melody</button></div><p id="status">Ready</p><div id="phrase-wrap"><div id="notes" aria-live="polite"></div><button id="reveal" type="button">Show Phrase</button></div><small>Browser prototype v1.0. Microphone is optional and off by default. Uses the default soft plucked tone. If silent, check iPhone Silent Mode. Voice commands and automatic grading are not yet implemented.</small></section></main><script>
 const $=id=>document.getElementById(id), keys=['C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B'], names=['C','C#','D','Eb','E','F','F#','G','Ab','A','Bb','B']; keys.forEach(k=>{let o=document.createElement('option');o.value=k;o.textContent=k;$('key').append(o)});$('key').value='G';
 const SETTINGS_KEY='hey-sam-settings-v1';
-const settingIds=['instrument','key','quality','scale','octaves','meter','rhythm','difficulty','count','start','cadence','mastervol','clickvol','melvol','tempo','mode','advance'];
-try{const saved=JSON.parse(localStorage.getItem(SETTINGS_KEY)||'{}');for(const id of settingIds){if(saved[id]!==undefined&&Array.from($(id).options||[]).some(o=>o.value===String(saved[id]))||saved[id]!==undefined&&$(id).type==='range'&&Number.isFinite(Number(saved[id]))){$(id).value=id==='mode'?({'alternate':'repeat','once':'repeat'}[saved[id]]||String(saved[id])):String(saved[id]);}}}catch(e){console.warn('Could not restore settings',e)}
+const settingIds=['instrument','key','quality','scale','octaves','meter','rhythm','difficulty','count','start','cadence','mastervol','clickvol','melvol','tempo','mode','advance','listen'];
+try{const saved=JSON.parse(localStorage.getItem(SETTINGS_KEY)||'{}');for(const id of settingIds){if(id==='listen'){if(saved.listen!==undefined)$(id).checked=saved.listen===true||saved.listen==='true';continue;}if(saved[id]!==undefined&&Array.from($(id).options||[]).some(o=>o.value===String(saved[id]))||saved[id]!==undefined&&$(id).type==='range'&&Number.isFinite(Number(saved[id]))){$(id).value=id==='mode'?({'alternate':'repeat','once':'repeat'}[saved[id]]||String(saved[id])):String(saved[id]);}}}catch(e){console.warn('Could not restore settings',e)}
 function updateNoteSelection(){
  const minor=$('quality').value==='minor';
  const labels=minor?['Full Minor Scale','Minor Pentatonic Scale','Minor Triad']:['Full Major Scale','Major Pentatonic Scale','Major Triad'];
@@ -34,8 +37,9 @@ function updateNoteSelection(){
 $('quality').addEventListener('change',()=>{updateNoteSelection();saveSettings()});
 $('scale').addEventListener('change',()=>{updateNoteSelection();saveSettings()});
 updateNoteSelection();
-function saveSettings(){try{localStorage.setItem(SETTINGS_KEY,JSON.stringify(Object.fromEntries(settingIds.map(id=>[id,$(id).value]))))}catch(e){console.warn('Could not save settings',e)}}
+function saveSettings(){try{localStorage.setItem(SETTINGS_KEY,JSON.stringify(Object.fromEntries(settingIds.map(id=>[id,id==='listen'?$(id).checked:$(id).value]))))}catch(e){console.warn('Could not save settings',e)}}
 for(const id of settingIds){$(id).addEventListener('input',saveSettings);$(id).addEventListener('change',saveSettings)}
+function updateMicHint(){$('micSettingHint').textContent=$('listen').checked?'On · microphone active during session':'Off · normal playback'}$('listen').addEventListener('change',updateMicHint);updateMicHint();
 
 let ctx=null, master=null, guitarSamples=new Map(), woodSamples=[], timer=null, nextTick=0, tickIndex=0, phrase=[], phraseBeats=4, phaseStart=0, session=false, melodyStopped=false, epoch=0, activeMode='loop', pendingMode=null, countBeats=0, phraseNumber=0;
 const num=id=>Number($(id).value), pick=a=>a[Math.floor(Math.random()*a.length)], clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
@@ -131,7 +135,9 @@ function click(when,accent){
 function playPhrase(when){let t=when,bps=60/num('tempo');for(const n of phrase){tone(n.midi,t,n.beats*bps,num('melvol')/100*.27);t+=n.beats*bps}}
 function scheduler(){if(!session||!ctx)return;const bps=60/num('tempo');while(nextTick<ctx.currentTime+.11){let beat=tickIndex-countBeats, inCount=beat<0, slot=beat>=0?Math.floor(beat/phraseBeats):0, slotBeat=beat>=0?beat%phraseBeats:0;if(!inCount&&slotBeat===0){if(pendingMode){activeMode=pendingMode;pendingMode=null}if(!melodyStopped&&(activeMode==='loop'||(activeMode==='repeat'&&slot%2===0)))playPhrase(nextTick);$('status').textContent=melodyStopped?'Metronome only':(activeMode==='repeat'?(slot%2===0?'Listen · melody':'Repeat · your turn'):'Play Along')+' · '+num('tempo')+' BPM';}click(nextTick,tickIndex%num('meter')===0);nextTick+=bps;tickIndex++;}}
 // Microphone pitch detection is local to the browser. No audio is uploaded.
-let micStream=null,micSource=null,micAnalyser=null,micBuffer=null,micFrame=0,micSession=0,wakeLock=null;
+let micStream=null,micSource=null,micAnalyser=null,micBuffer=null,micFrame=0,micSession=0,wakeLock=null,lastDetectedAt=0;
+function configureAudioSession(mode){try{if('audioSession' in navigator&&navigator.audioSession)navigator.audioSession.type=mode;}catch(e){console.info('Audio session mode not available',e);}}
+function updateLiveHeight(){const upper=$('sliderRow');const parent=$('settingsPanel');if(upper&&parent)parent.style.setProperty('--upper-height',Math.max(150,upper.offsetTop-parent.offsetTop)+'px');}
 const noteNames=['C','C♯','D','E♭','E','F','F♯','G','A♭','A','B♭','B'];
 function detectPitch(data,sampleRate){
  let rms=0;for(let i=0;i<data.length;i++)rms+=data[i]*data[i];rms=Math.sqrt(rms/data.length);
@@ -163,8 +169,8 @@ function showMic(){
  const result=detectPitch(micBuffer,ctx.sampleRate);
  if(result){
   $('liveNote').textContent=noteNames[(result.midi%12+12)%12]+(Math.floor(result.midi/12)-1);
-  $('liveDetails').textContent=(result.cents>=0?'+':'')+result.cents+' cents · '+Math.round(result.freq)+' Hz';
- }else{$('liveNote').textContent='—';$('liveDetails').textContent='Listening for a clear single note…';}
+  $('liveDetails').textContent=(result.cents>=0?'+':'')+result.cents+' cents · '+Math.round(result.freq)+' Hz';lastDetectedAt=performance.now();$('liveNote').style.opacity='1';
+ }else{if(performance.now()-lastDetectedAt>350){$('liveNote').style.opacity='.45';$('liveDetails').textContent='Waiting for a clear note…';}}
  micFrame=requestAnimationFrame(showMic);
 }
 async function startMic(token){
@@ -178,7 +184,7 @@ async function startMic(token){
   $('micstate').textContent='Microphone active';showMic();
  }catch(e){if(session&&token===micSession)$('micstate').textContent=e.name==='NotAllowedError'?'Microphone permission denied':'Microphone unavailable';}
 }
-function stopMic(){micSession++;cancelAnimationFrame(micFrame);micFrame=0;if(micSource){micSource.disconnect();micSource=null;}if(micStream){micStream.getTracks().forEach(t=>t.stop());micStream=null;}micAnalyser=null;micBuffer=null;}
+function stopMic(){micSession++;cancelAnimationFrame(micFrame);micFrame=0;if(micSource){micSource.disconnect();micSource=null;}if(micStream){micStream.getTracks().forEach(t=>t.stop());micStream=null;}micAnalyser=null;micBuffer=null;configureAudioSession('playback');}
 async function requestWakeLock(){
  if(!session||document.visibilityState!=='visible'||!('wakeLock' in navigator)||wakeLock)return;
  try{wakeLock=await navigator.wakeLock.request('screen');wakeLock.addEventListener('release',()=>{wakeLock=null;});}catch(e){console.info('Wake lock unavailable',e);}
@@ -193,11 +199,12 @@ $('startbtn').onclick=async()=>{
  stop();
  try{ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();await ctx.resume();}catch(e){$('status').textContent='Could not start audio';return;}
  initAudio();makePhrase();activeMode=$('mode').value;pendingMode=null;melodyStopped=false;countBeats=num('meter');tickIndex=0;nextTick=ctx.currentTime+.1;session=true;
- $('settingsPanel').classList.add('session-active');$('livePanel').hidden=false;
- $('liveNote').textContent='—';$('liveDetails').textContent='Play a single note on your instrument';
+ const listening=$('listen').checked;updateLiveHeight();$('settingsPanel').classList.toggle('session-active',listening);$('livePanel').hidden=!listening;
+ $('liveNote').textContent='—';$('liveNote').style.opacity='1';lastDetectedAt=0;$('liveDetails').textContent='Play a single note on your instrument';
  $('startbtn').classList.add('playing');$('stopall').classList.add('playing');timer=setInterval(scheduler,25);scheduler();$('status').textContent='Playing · count-in 1 measure';
- requestWakeLock();startMic(++micSession);
+ requestWakeLock();if(listening){configureAudioSession('play-and-record');startMic(++micSession);}else{configureAudioSession('playback');$('status').textContent='Playing · microphone off · count-in 1 measure';}
 };
+window.addEventListener('resize',()=>{if(session&&$('listen').checked)updateLiveHeight()});
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&session)requestWakeLock();});
 $('mode').onchange=()=>{pendingMode=$('mode').value;$('status').textContent='Mode change queued: '+(pendingMode==='loop'?'Play Along':'Listen and Repeat')};
 $('stopmel').onclick=()=>{melodyStopped=true;$('status').textContent='Melody stopped; metronome continues (scheduled notes may finish)'};
