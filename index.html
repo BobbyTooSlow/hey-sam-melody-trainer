@@ -14,14 +14,14 @@
 .live-head{display:flex;flex-direction:column;gap:5px;font-size:17px}#micstate{font-size:12px;color:#9fcebd}#liveNote{font-size:clamp(64px,19vw,110px);font-weight:800;color:#a3f0d0;line-height:1.1}#liveDetails{font-size:16px;color:#e0eded}.live-hint{font-size:11px;color:#a8bec2}
 </style></head><body><main><section class="panel settings" id="settingsPanel" aria-label="Practice settings">
 <div id="livePanel" hidden aria-live="off"><div class="live-head"><strong>Live Note Detector</strong><span id="micstate">Starting microphone…</span></div><div class="live-note" id="liveNote">—</div><div id="liveDetails">Play a single note on your instrument</div><div class="live-hint" id="liveHint">Last detected note stays visible; dim means no clear note is sounding.</div></div>
-<div class="settings-row header"><h1>Hey Sam! <span style="font-size:10px;font-weight:400;color:#bdc9c9">v1.0</span></h1><label>Instrument<select id="instrument"><option>Guitar</option><option>Mandolin</option><option>Mandola</option></select></label></div>
+<div class="settings-row header"><h1>Hey Sam! <span style="font-size:10px;font-weight:400;color:#bdc9c9">v1.1</span></h1><label>Instrument<select id="instrument"><option>Guitar</option><option>Mandolin</option><option>Mandola</option></select></label></div>
 <div class="settings-row"><label>Key<div class="key-pair"><select id="key"></select><select id="quality" aria-label="Major or minor"><option value="major">Major</option><option value="minor">Minor</option></select></div></label><label>Note Selection<select id="scale"><option value="major">Full Major Scale</option><option value="pent">Major Pentatonic Scale</option><option value="triad">Major Triad</option></select></label><label>Range<select id="octaves"><option value="1">1 octave</option><option value="2">2 octaves</option></select></label></div>
 <div class="settings-row"><label>Meter<select id="meter"><option value="4">4/4</option><option value="3">3/4</option></select></label><label>Rhythm<select id="rhythm"><option value="q">Quarter</option><option value="qh">Quarter / half</option><option value="eqh">8th / ¼ / ½</option></select></label><label>Melodic difficulty<select id="difficulty"><option value="easy">Easy</option><option value="medium" selected>Medium</option><option value="hard">Hard</option><option value="free">Unrestricted</option></select></label></div>
 <div class="settings-row"><label>Phrase notes<select id="count"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select></label><label>Start note<select id="start"><option value="tonic">Tonic</option><option value="triad">Triad tone</option><option value="any">Any note</option></select></label><label>End note<select id="cadence"><option value="tonic">Tonic</option><option value="chord">Triad tone</option><option value="open">Anticipatory Notes</option><option value="any">Any note</option></select></label></div>
 <div class="mix-row" id="sliderRow"><div class="mix-controls"><label class="vol-item" for="mastervol">Master<input id="mastervol" type="range" min="0" max="100" value="65"><output id="masterval">65</output></label><label class="vol-item divider-before" for="clickvol">Click<input id="clickvol" type="range" min="0" max="100" value="65"><output id="clickval">65</output></label><label class="vol-item" for="melvol">Melody<input id="melvol" type="range" min="0" max="100" value="30"><output id="melval">30</output></label><label class="vol-item divider-before" for="tempo">Tempo<input id="tempo" type="range" min="40" max="180" step="5" value="80"><output id="tempoval">80</output></label><div class="tempo-buttons"><button class="secondary" id="faster" type="button">Faster</button><button class="secondary" id="slower" type="button">Slower</button></div></div></div>
 <div class="settings-row two"><label>Playback mode<select id="mode"><option value="loop">Play Along</option><option value="repeat">Listen and Repeat</option></select></label><label>Advancement<select id="advance"><option value="manual">User controlled</option><option value="auto">Automatic (future)</option></select></label></div>
 <div class="mic-setting" id="micSetting"><label for="listen"><input type="checkbox" id="listen"> Listen to My Playing</label><span id="micSettingHint">Off · normal playback</span></div>
-</section><section class="panel"><div class="controls"><button id="startbtn" class="start-button">Start Session</button><button class="secondary next-button" id="next">Next Phrase</button><button class="secondary stop-button stop-all" id="stopall">Stop All</button><button class="secondary stop-button" id="stopmel">Stop Melody</button></div><p id="status">Ready</p><div id="phrase-wrap"><div id="notes" aria-live="polite"></div><button id="reveal" type="button">Show Phrase</button></div><small>Browser prototype v1.0. Microphone is optional and off by default. Uses the default soft plucked tone. If silent, check iPhone Silent Mode. Voice commands and automatic grading are not yet implemented.</small></section></main><script>
+</section><section class="panel"><div class="controls"><button id="startbtn" class="start-button">Start Session</button><button class="secondary next-button" id="next">Next Phrase</button><button class="secondary stop-button stop-all" id="stopall">Stop All</button><button class="secondary stop-button" id="stopmel">Stop Melody</button></div><p id="status">Ready</p><div id="phrase-wrap"><div id="notes" aria-live="polite"></div><button id="reveal" type="button">Show Phrase</button></div><small>Browser prototype v1.1. Guitar phrases stay between E2 and E5 (12th fret). Microphone is optional and off by default. Uses the default soft plucked tone. If silent, check iPhone Silent Mode. Voice commands and automatic grading are not yet implemented.</small></section></main><script>
 const $=id=>document.getElementById(id), keys=['C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B'], names=['C','C#','D','Eb','E','F','F#','G','Ab','A','Bb','B']; keys.forEach(k=>{let o=document.createElement('option');o.value=k;o.textContent=k;$('key').append(o)});$('key').value='G';
 const SETTINGS_KEY='hey-sam-settings-v1';
 const settingIds=['instrument','key','quality','scale','octaves','meter','rhythm','difficulty','count','start','cadence','mastervol','clickvol','melvol','tempo','mode','advance','listen'];
@@ -49,6 +49,19 @@ function makePhrase(){
  const triad=minor?[0,3,7]:[0,4,7];
  const degrees=({major:scaleSemis,pent:minor?[0,3,5,7,10]:[0,2,4,7,9],triad})[$('scale').value];
  const oct=num('octaves'), candidates=[];
+ // Guitar is standard-tuned: low open E2 (MIDI 40) through high E at fret 12 (E5, MIDI 76).
+ // Place each key's tonic as high as possible within a comfortable register while
+ // allowing the entire selected octave span to remain playable.
+ const guitar=$('instrument').value==='Guitar';
+ const lowest=40, highest=76;
+ let base=60+root;
+ if(guitar){
+  const ceiling=highest-12*oct;
+  while(base>ceiling)base-=12;
+  while(base+12<=ceiling)base+=12;
+  if(base<lowest)base+=12;
+ }
+
  for(let n=0;n<=12*oct;n++)if(degrees.includes(n%12))candidates.push(n);
  const starters=candidates.filter(n=>$('start').value==='any'||($('start').value==='tonic'?n%12===0:triad.includes(n%12)));
  let prev=pick(starters),count=clamp(num('count'),1,9),result=[];
@@ -69,13 +82,13 @@ function makePhrase(){
   let diff=$('difficulty').value;
   if(i>0&&diff!=='free'){let max={easy:4,medium:7,hard:12}[diff];let restricted=available.filter(n=>Math.abs(n-prev)<=max);if(restricted.length)available=restricted;}
   let n=pick(available),durations={q:[1],qh:[1,2],eqh:[.5,1,2]}[$('rhythm').value],duration=pick(durations);
-  result.push({midi:60+root+n,beats:duration});prev=n;
+  result.push({midi:base+n,beats:duration});prev=n;
  }
- phrase=result;phraseBeats=Math.ceil(result.reduce((s,n)=>s+n.beats,0)/num('meter'))*num('meter');renderNotes(root);
+ phrase=result;phraseBeats=Math.ceil(result.reduce((s,n)=>s+n.beats,0)/num('meter'))*num('meter');renderNotes(base);
 }
 function hidePhrase(){$('reveal').hidden=false;}
 $('reveal').onclick=()=>{$('reveal').hidden=true};
-function renderNotes(root){const host=$('notes');host.replaceChildren();const label=document.createElement('span');label.className='notes-label';label.textContent='Phrase:';host.append(label);const major=$('quality').value==='minor'?[0,2,3,5,7,8,10]:[0,2,4,5,7,9,11];let beat=0;const meter=num('meter');for(const n of phrase){if(beat>0&&Math.abs(beat/meter-Math.round(beat/meter))<.001){const bar=document.createElement('span');bar.className='barline';bar.setAttribute('aria-label','Measure divider');host.append(bar)}const offset=((n.midi-(60+root))%12+12)%12;const degree=major.indexOf(offset)+1;const item=document.createElement('span');item.className='note';const name=document.createElement('span');name.className='note-name';name.textContent=names[n.midi%12];const deg=document.createElement('span');deg.className='degree';deg.textContent=degree?String(degree):'–';item.append(name,deg);host.append(item);beat+=n.beats;}hidePhrase();}
+function renderNotes(base){const host=$('notes');host.replaceChildren();const label=document.createElement('span');label.className='notes-label';label.textContent='Phrase:';host.append(label);const major=$('quality').value==='minor'?[0,2,3,5,7,8,10]:[0,2,4,5,7,9,11];let beat=0;const meter=num('meter');for(const n of phrase){if(beat>0&&Math.abs(beat/meter-Math.round(beat/meter))<.001){const bar=document.createElement('span');bar.className='barline';bar.setAttribute('aria-label','Measure divider');host.append(bar)}const offset=((n.midi-base)%12+12)%12;const degree=major.indexOf(offset)+1;const item=document.createElement('span');item.className='note';const name=document.createElement('span');name.className='note-name';name.textContent=names[n.midi%12];const deg=document.createElement('span');deg.className='degree';deg.textContent=degree?String(degree):'–';item.append(name,deg);host.append(item);beat+=n.beats;}hidePhrase();}
 for(const [id,out] of [['mastervol','masterval'],['clickvol','clickval'],['melvol','melval'],['tempo','tempoval']]){$(id).addEventListener('input',()=>$(out).textContent=$(id).value)}
 for(const [id,out] of [['mastervol','masterval'],['clickvol','clickval'],['melvol','melval'],['tempo','tempoval']])$(out).textContent=$(id).value;
 // Procedural plucked-string samples: band-limited, damped delay-line synthesis.
