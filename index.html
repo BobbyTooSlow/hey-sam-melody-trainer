@@ -14,14 +14,14 @@
 .live-head{display:flex;flex-direction:column;gap:5px;font-size:17px}#micstate{font-size:12px;color:#9fcebd}#liveNote{font-size:clamp(64px,19vw,110px);font-weight:800;color:#a3f0d0;line-height:1.1}#liveDetails{font-size:16px;color:#e0eded}.live-hint{font-size:11px;color:#a8bec2}.input-level{width:min(250px,85%);height:9px;background:#102126;border:1px solid #547077;border-radius:10px;overflow:hidden}.input-level-fill{height:100%;width:0;background:#3aab88;transition:width .09s}#levelText{font-size:11px;color:#bdd2d1}
 </style></head><body><main><section class="panel settings" id="settingsPanel" aria-label="Practice settings">
 <div id="livePanel" hidden aria-live="off"><div class="live-head"><strong>Live Note Detector</strong><span id="micstate">Starting microphone…</span></div><div class="live-note" id="liveNote">—</div><div id="liveDetails">Play a single note on your instrument</div><div class="input-level" role="meter" aria-label="Microphone input level"><div class="input-level-fill" id="levelFill"></div></div><div id="levelText">Input level: —</div><div class="live-hint" id="liveHint">Last detected note stays visible; dim means no clear note is sounding.</div></div>
-<div class="settings-row header"><h1>Hey Sam! <span style="font-size:10px;font-weight:400;color:#bdc9c9">v1.2</span></h1><label>Instrument<select id="instrument"><option>Guitar</option><option>Mandolin</option><option>Mandola</option></select></label></div>
+<div class="settings-row header"><h1>Hey Sam! <span style="font-size:10px;font-weight:400;color:#bdc9c9">v1.3</span></h1><label>Instrument<select id="instrument"><option>Guitar</option><option>Mandolin</option><option>Mandola</option></select></label></div>
 <div class="settings-row"><label>Key<div class="key-pair"><select id="key"></select><select id="quality" aria-label="Major or minor"><option value="major">Major</option><option value="minor">Minor</option></select></div></label><label>Note Selection<select id="scale"><option value="major">Full Major Scale</option><option value="pent">Major Pentatonic Scale</option><option value="triad">Major Triad</option></select></label><label>Range<select id="octaves"><option value="1">1 octave</option><option value="2">2 octaves</option></select></label></div>
 <div class="settings-row"><label>Meter<select id="meter"><option value="4">4/4</option><option value="3">3/4</option></select></label><label>Rhythm<select id="rhythm"><option value="q">Quarter</option><option value="qh">Quarter / half</option><option value="eqh">8th / ¼ / ½</option></select></label><label>Melodic difficulty<select id="difficulty"><option value="easy">Easy</option><option value="medium" selected>Medium</option><option value="hard">Hard</option><option value="free">Unrestricted</option></select></label></div>
 <div class="settings-row"><label>Phrase notes<select id="count"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select></label><label>Start note<select id="start"><option value="tonic">Tonic</option><option value="triad">Triad tone</option><option value="any">Any note</option></select></label><label>End note<select id="cadence"><option value="tonic">Tonic</option><option value="chord">Triad tone</option><option value="open">Anticipatory Notes</option><option value="any">Any note</option></select></label></div>
 <div class="mix-row" id="sliderRow"><div class="mix-controls"><label class="vol-item" for="mastervol">Master<input id="mastervol" type="range" min="0" max="100" value="65"><output id="masterval">65</output></label><label class="vol-item divider-before" for="clickvol">Click<input id="clickvol" type="range" min="0" max="100" value="65"><output id="clickval">65</output></label><label class="vol-item" for="melvol">Melody<input id="melvol" type="range" min="0" max="100" value="30"><output id="melval">30</output></label><label class="vol-item divider-before" for="tempo">Tempo<input id="tempo" type="range" min="40" max="180" step="5" value="80"><output id="tempoval">80</output></label><div class="tempo-buttons"><button class="secondary" id="faster" type="button">Faster</button><button class="secondary" id="slower" type="button">Slower</button></div></div></div>
 <div class="settings-row two"><label>Playback mode<select id="mode"><option value="loop">Play Along</option><option value="repeat">Listen and Repeat</option></select></label><label>Advancement<select id="advance"><option value="manual">User controlled</option><option value="auto">Automatic (future)</option></select></label></div>
 <div class="mic-setting" id="micSetting"><label for="listen"><input type="checkbox" id="listen"> Listen to My Playing</label><span id="micSettingHint">Off · normal playback</span></div>
-</section><section class="panel"><div class="controls"><button id="startbtn" class="start-button">Start Session</button><button class="secondary next-button" id="next">Next Phrase</button><button class="secondary stop-button stop-all" id="stopall">Stop All</button><button class="secondary stop-button" id="stopmel">Stop Melody</button></div><p id="status">Ready</p><div id="phrase-wrap"><div id="notes" aria-live="polite"></div><button id="reveal" type="button">Show Phrase</button></div><small>Browser prototype v1.2. YIN pitch detection with input level indicator. Guitar phrases stay between E2 and E5 (12th fret). Microphone is optional and off by default. Uses the default soft plucked tone. If silent, check iPhone Silent Mode. Voice commands and automatic grading are not yet implemented.</small></section></main><script>
+</section><section class="panel"><div class="controls"><button id="startbtn" class="start-button">Start Session</button><button class="secondary next-button" id="next">Next Phrase</button><button class="secondary stop-button stop-all" id="stopall">Stop All</button><button class="secondary stop-button" id="stopmel">Stop Melody</button></div><p id="status">Ready</p><div id="phrase-wrap"><div id="notes" aria-live="polite"></div><button id="reveal" type="button">Show Phrase</button></div><small>Browser prototype v1.3. Calibrated YIN pitch detection with dBFS meter and tempo-aware note response. Guitar phrases stay between E2 and E5 (12th fret). Microphone is optional and off by default. Uses the default soft plucked tone. If silent, check iPhone Silent Mode. Voice commands and automatic grading are not yet implemented.</small></section></main><script>
 const $=id=>document.getElementById(id), keys=['C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B'], names=['C','C#','D','Eb','E','F','F#','G','Ab','A','Bb','B']; keys.forEach(k=>{let o=document.createElement('option');o.value=k;o.textContent=k;$('key').append(o)});$('key').value='G';
 const SETTINGS_KEY='hey-sam-settings-v1';
 const settingIds=['instrument','key','quality','scale','octaves','meter','rhythm','difficulty','count','start','cadence','mastervol','clickvol','melvol','tempo','mode','advance','listen'];
@@ -155,14 +155,16 @@ const noteNames=['C','C♯','D','E♭','E','F','F♯','G','A♭','A','B♭','B']
 // YIN difference function and cumulative mean normalized difference (CMNDF).
 // A low-energy gate adapts to the measured noise floor; analysis is throttled
 // to leave time for audio scheduling on older iPhones.
-let noiseFloor=.0015, lastAnalysis=0, lastPitch=null, pitchVotes=[];
+let noiseFloor=.00025, lastAnalysis=0, lastPitch=null, pitchVotes=[], recentRms=[];
 function detectPitch(data,sampleRate){
  const N=data.length;let mean=0,energy=0;
  for(let i=0;i<N;i++)mean+=data[i];mean/=N;
  for(let i=0;i<N;i++){const v=data[i]-mean;energy+=v*v;}
  const rms=Math.sqrt(energy/N);
- const gate=Math.max(.0025,noiseFloor*2.8);
- if(rms<gate){noiseFloor=noiseFloor*.985+rms*.015;return {rms};}
+ const gate=Math.max(.00045,noiseFloor*2.0);
+ if(rms<gate){noiseFloor=noiseFloor*.96+rms*.04;return {rms};}
+ // Learn the background level slowly while retaining a low gate for plucked notes.
+ noiseFloor=Math.min(noiseFloor*.999+rms*.001,Math.max(.00025,rms*.3));
  // Use the full guitar range E2-E5, with headroom for mandolin.
  const minLag=Math.max(2,Math.floor(sampleRate/1100));
  const maxLag=Math.min(Math.floor(sampleRate/75),Math.floor(N/2)-1);
@@ -195,26 +197,40 @@ function detectPitch(data,sampleRate){
 function showMic(now){
  if(!session||!micAnalyser)return;
  micFrame=requestAnimationFrame(showMic);
- if(now-lastAnalysis<65)return;
+ if(now-lastAnalysis<45)return;
  lastAnalysis=now;
  micAnalyser.getFloatTimeDomainData(micBuffer);
  const result=detectPitch(micBuffer,ctx.sampleRate);
- const level=Math.min(100,Math.round((result.rms||0)*850));
+ // dBFS is measured from the microphone PCM signal, not a guessed loudness category.
+ const rms=result.rms||0;
+ const dbfs=rms>0?20*Math.log10(rms):-100;
+ const level=clamp(Math.round((dbfs+65)/60*100),0,100);
  $('levelFill').style.width=level+'%';
- $('levelText').textContent='Input level: '+(level<4?'Very quiet':level<15?'Quiet':level<70?'Good':'Strong');
+ const label=dbfs<-58?'Very quiet':dbfs<-48?'Quiet':dbfs<-20?'Good':'Strong';
+ $('levelText').textContent='Input: '+dbfs.toFixed(1)+' dBFS · '+label;
+ // Confirm quickly enough to follow one note per beat. At 90 BPM the
+ // detection window is at most ~167 ms (one quarter of a 667 ms beat).
+ const beatMs=60000/num('tempo');
+ const confirmMs=Math.min(170,beatMs*.25);
+ const nowMs=performance.now();
+ pitchVotes=pitchVotes.filter(x=>nowMs-x.at<=confirmMs);
  if(result.freq){
-  pitchVotes.push(result);if(pitchVotes.length>3)pitchVotes.shift();
-  const agreeing=pitchVotes.filter(x=>Math.abs(x.midi-result.midi)<=1);
-  // A short consensus prevents a noisy pick attack from flashing false notes.
+  pitchVotes.push({...result,at:nowMs});
+  const agreeing=pitchVotes.filter(x=>Math.abs(x.midi-result.midi)<=0);
   if(agreeing.length>=2){
    const stable=agreeing[agreeing.length-1];lastPitch=stable;
    $('liveNote').textContent=noteNames[(stable.midi%12+12)%12]+(Math.floor(stable.midi/12)-1);
    $('liveDetails').textContent=(stable.cents>=0?'+':'')+stable.cents+' cents · '+Math.round(stable.freq)+' Hz';
-   lastDetectedAt=performance.now();$('liveNote').style.opacity='1';
+   lastDetectedAt=nowMs;$('liveNote').style.opacity='1';
+   // Don't let a prior note's votes delay recognition of the next note.
+   pitchVotes=pitchVotes.filter(x=>x.midi===stable.midi);
   }
- }else{
-  pitchVotes=[];
-  if(performance.now()-lastDetectedAt>650){$('liveNote').style.opacity='.45';$('liveDetails').textContent=lastPitch?'Last note shown · waiting for sound…':'Play a single sustained note…';}
+ }
+ // Hold the last note as a visual reference, but dim it after a short,
+ // tempo-relative interval rather than treating it as a current note.
+ if(nowMs-lastDetectedAt>Math.min(400,beatMs*.55)){
+  $('liveNote').style.opacity='.45';
+  $('liveDetails').textContent=lastPitch?'Last note shown · waiting for sound…':'Play a single sustained note…';
  }
 }
 async function startMic(token){
@@ -225,7 +241,7 @@ async function startMic(token){
   if(!session||token!==micSession){stream.getTracks().forEach(t=>t.stop());return;}
   micStream=stream;micSource=ctx.createMediaStreamSource(stream);micAnalyser=ctx.createAnalyser();micAnalyser.fftSize=4096;micAnalyser.smoothingTimeConstant=0;
   micSource.connect(micAnalyser);micBuffer=new Float32Array(micAnalyser.fftSize);
-  noiseFloor=.0015;lastAnalysis=0;lastPitch=null;pitchVotes=[];$('micstate').textContent='Microphone active';showMic(performance.now());
+  noiseFloor=.00025;lastAnalysis=0;lastPitch=null;pitchVotes=[];$('micstate').textContent='Microphone active';showMic(performance.now());
  }catch(e){if(session&&token===micSession)$('micstate').textContent=e.name==='NotAllowedError'?'Microphone permission denied':'Microphone unavailable';}
 }
 function stopMic(){micSession++;cancelAnimationFrame(micFrame);micFrame=0;if(micSource){micSource.disconnect();micSource=null;}if(micStream){micStream.getTracks().forEach(t=>t.stop());micStream=null;}micAnalyser=null;micBuffer=null;configureAudioSession('playback');}
