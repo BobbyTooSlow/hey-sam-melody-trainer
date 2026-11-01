@@ -26,14 +26,14 @@
 .timeline-options{display:flex;gap:5px;align-items:center;justify-content:space-between;width:100%}
 .timeline-options label{font-size:10px;color:#c9d6d6;display:flex;gap:3px;align-items:center}
 .timeline-options select{font-size:11px;background:#101d22;color:white;border:1px solid #567078;border-radius:4px;height:26px;max-width:120px}
-#timeline{width:100%;display:flex;overflow-x:auto;overflow-y:hidden;min-height:91px;align-items:stretch;gap:0;padding:3px 0;scrollbar-width:thin}
-.tbar{display:flex;flex:0 0 auto;border-left:2px solid #a0b9b9;min-width:110px;height:82px;position:relative}
+#timeline{width:100%;display:flex;overflow-x:auto;overflow-y:hidden;min-height:150px;align-items:stretch;gap:0;padding:3px 0;scrollbar-width:thin}
+.tbar{display:flex;flex:0 0 calc(100% - 4px);border-left:2px solid #a0b9b9;min-width:110px;height:140px;position:relative}
 .tbar:last-child{border-right:2px solid #a0b9b9}
 .tcell{min-width:27px;flex:1;position:relative;background:#102126;border-right:1px dotted #405b61;display:flex;align-items:center;justify-content:center}
 .tcell.active{background:#305951}
 .tcell.active:before{content:'';position:absolute;top:0;bottom:0;left:0;width:2px;background:#72e6bb;z-index:2}
 .tcell .beatnum{position:absolute;bottom:2px;left:4px;font-size:9px;color:#91adb0}
-.tnote{position:absolute;top:7px;bottom:20px;left:1px;right:1px;border:1px solid #52727a;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:23px;font-weight:800;background:#263a41;color:#f1f5f3;z-index:1;pointer-events:none}
+.tnote{position:absolute;top:7px;bottom:20px;left:1px;right:1px;border:1px solid #52727a;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:29px;font-weight:800;background:#263a41;color:#f1f5f3;z-index:1;pointer-events:none}
 .tnote.ok{background:#1d664d;color:#a6f8cb;border-color:#51ca8d}
 .tnote.wrong{background:#63492d;color:#ffcf89;border-color:#c8934d}
 .tnote.miss{color:#c9d2d4}
@@ -41,22 +41,23 @@
 .tnote.hold{opacity:.8}
 #timelineHint{font-size:10px;color:#a7c0c2;min-height:13px}
 .settings.session-active #phrase-wrap{display:none}
-@media(max-width:370px){.tbar{min-width:105px}#livePanel{padding:5px 3px}}
+@media(max-width:370px){#livePanel{padding:5px 3px}}
+.octave-lock-row{padding-top:3px;padding-bottom:5px}.octave-lock-label{display:flex!important;align-items:center;gap:9px;font-size:12px!important}.octave-lock-label input{width:18px;height:18px;accent-color:#56bca0;flex:none}
 .instrument-selectors{display:grid;grid-template-columns:1fr 1fr;gap:5px;min-width:0}.settings-row.header{grid-template-columns:120px minmax(0,1fr)}.instrument-selectors label{white-space:normal}.instrument-selectors select{font-size:10px}.controls .next-button svg{width:21px;height:21px;vertical-align:-5px;margin-left:5px;stroke-width:2.5}.controls .pause-button{border:1px solid #b58c26;background:#3b5159;color:#fff}.controls .pause-button.paused{background:#b58c26;color:#181408}@media(max-width:370px){.settings-row.header{grid-template-columns:95px minmax(0,1fr)}}
 </style></head><body><main><section class="panel settings" id="settingsPanel" aria-label="Practice settings">
 <div id="livePanel" hidden aria-live="off"><div class="live-head"><strong>Phrase Timeline</strong><span id="micstate">Starting microphone…</span></div><div class="timeline-options"><label>Display <select id="timelineNotation"><option value="degree">Scale Degrees</option><option value="letter">Note Letters</option></select></label><label>View <select id="timelineView"><option value="practice">Practice</option><option value="study">Study</option></select></label></div><div id="timeline" aria-label="Beat-aligned phrase timeline"></div><div id="timelineHint">Headphones recommended when listening is on.</div><div class="live-note" id="liveNote">—</div><div id="liveDetails">Play a single note on your instrument</div><div class="input-level" role="meter" aria-label="Microphone input level"><div class="input-level-fill" id="levelFill"></div></div><div id="levelText">Input level: —</div><div class="live-hint" id="liveHint">Last detected note stays visible; dim means no clear note is sounding.</div></div>
-<div class="settings-row header"><h1 class="brand">KENNY<br>PICKETT?<span class="version">v1.9</span></h1><span class="instrument-selectors"><label>App Instrument<select id="appInstrument"><option value="guitar">Acoustic Guitar</option><option value="piano">Piano</option></select></label><label>User Instrument<select id="instrument"><option>Guitar</option><option>Mandolin</option><option>Mandola</option><option>Tenor Guitar CGDA</option><option>Tenor Guitar GDAE</option><option>Piano</option></select></label></span></div>
-<div class="settings-row"><label>Key<div class="key-pair"><select id="key"></select><select id="quality" aria-label="Major or minor"><option value="major">Major</option><option value="minor">Minor</option></select></div></label><label>Note Selection<select id="scale"><option value="major">Full Major Scale</option><option value="pent">Major Pentatonic Scale</option><option value="triad">Major Triad</option></select></label><label>Range<select id="octaves"><option value="1">1 octave</option><option value="2">2 octaves</option></select></label></div>
+<div class="settings-row header"><h1 class="brand">KENNY<br>PICKETT?<span class="version">v2.0</span></h1><span class="instrument-selectors"><label>App Instrument<select id="appInstrument"><option value="guitar">Acoustic Guitar</option><option value="piano">Piano</option></select></label><label>User Instrument<select id="instrument"><option>Guitar</option><option>Mandolin</option><option>Mandola</option><option>Tenor Guitar CGDA</option><option>Tenor Guitar GDAE</option><option>Piano</option></select></label></span></div>
+<div class="settings-row"><label>Key<div class="key-pair"><select id="key"></select><select id="quality" aria-label="Major or minor"><option value="major">Major</option><option value="minor">Minor</option></select></div></label><label>Note Selection<select id="scale"><option value="major">Full Major Scale</option><option value="pent">Major Pentatonic Scale</option><option value="triad">Major Triad</option></select></label><label>Range<select id="octaves"><option value="1">1 octave</option><option value="2">2 octaves</option></select></label></div><div class="settings-row octave-lock-row"><label class="octave-lock-label"><input id="lockOctave" type="checkbox"> Keep the same octave range throughout the session</label></div>
 <div class="settings-row"><label>Meter<select id="meter"><option value="4">4/4</option><option value="3">3/4</option></select></label><label>Rhythm<select id="rhythm"><option value="q">Quarter</option><option value="qh">Quarter / half</option><option value="eqh">8th / ¼ / ½</option></select></label><label>Melodic difficulty<select id="difficulty"><option value="easy">Easy</option><option value="medium" selected>Medium</option><option value="hard">Hard</option><option value="free">Unrestricted</option></select></label></div>
 <div class="settings-row"><label>Phrase notes<select id="count"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select></label><label>Start note<select id="start"><option value="tonic">Tonic</option><option value="triad">Triad tone</option><option value="any">Any note</option></select></label><label>End note<select id="cadence"><option value="tonic">Tonic</option><option value="chord">Triad tone</option><option value="open">Anticipatory Notes</option><option value="any">Any note</option></select></label></div>
 <div class="mix-row" id="sliderRow"><div class="mix-controls"><label class="vol-item" for="mastervol">Master<input id="mastervol" type="range" min="0" max="100" value="65"><output id="masterval">65</output></label><label class="vol-item divider-before" for="clickvol">Click<input id="clickvol" type="range" min="0" max="100" value="65"><output id="clickval">65</output></label><label class="vol-item" for="melvol">Melody<input id="melvol" type="range" min="0" max="100" value="30"><output id="melval">30</output></label><label class="vol-item divider-before" for="tempo">Tempo<input id="tempo" type="range" min="40" max="180" step="5" value="80"><output id="tempoval">80</output></label><div class="tempo-buttons"><button class="secondary" id="faster" type="button">Faster</button><button class="secondary" id="slower" type="button">Slower</button></div></div></div>
 <div class="settings-row two"><label>Playback mode<select id="mode"><option value="loop">Play Along</option><option value="repeat">Listen and Repeat</option></select></label><label>Advancement<select id="advance"><option value="manual">User controlled</option><option value="auto">Automatic (future)</option></select></label></div>
 <div class="mic-setting" id="micSetting"><label for="listen"><input type="checkbox" id="listen"> Listen to My Playing</label><span id="micSettingHint">Off · normal playback</span></div>
-</section><section class="panel"><div class="controls"><button id="startbtn" class="start-button">Start Session</button><button class="secondary stop-button stop-all" id="stopall">Stop Session</button><button class="secondary pause-button" id="pausebtn">Pause Session</button><button class="secondary next-button" id="next">Next <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m4 5 10 7-10 7V5Z"/><path d="M18 5v14"/></svg></button></div><p id="status">Ready</p><div id="phrase-wrap"><div id="notes" aria-live="polite"></div><button id="reveal" type="button">Show Phrase</button></div><small>Browser prototype v1.9. Beat-aligned phrase timeline with one-shot pitch feedback. Adaptive background-noise calibration with dBFS and pitch-confidence feedback. Phrase range follows the selected user instrument. Microphone is optional and off by default. Uses Meta Open Sound CC0 steel-string guitar samples when available, with a synthesized fallback. 37 guitar and 57 piano samples are bundled for offline use; headphones recommended with microphone listening. If silent, check iPhone Silent Mode. Voice commands and automatic grading are not yet implemented.</small></section></main><script>
+</section><section class="panel"><div class="controls"><button id="startbtn" class="start-button">Start Session</button><button class="secondary stop-button stop-all" id="stopall">Stop Session</button><button class="secondary pause-button" id="pausebtn">Pause Session</button><button class="secondary next-button" id="next">Next <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m4 5 10 7-10 7V5Z"/><path d="M18 5v14"/></svg></button></div><p id="status">Ready</p><div id="phrase-wrap"><div id="notes" aria-live="polite"></div><button id="reveal" type="button">Show Phrase</button></div><small>Browser prototype v2.0. Beat-aligned phrase timeline with one-shot pitch feedback. Adaptive background-noise calibration with dBFS and pitch-confidence feedback. Phrase range follows the selected user instrument. Microphone is optional and off by default. Uses Meta Open Sound CC0 steel-string guitar samples when available, with a synthesized fallback. 37 guitar and 57 piano samples are bundled for offline use; headphones recommended with microphone listening. If silent, check iPhone Silent Mode. Voice commands and automatic grading are not yet implemented.</small></section></main><script>
 const $=id=>document.getElementById(id), keys=['C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B'], names=['C','C#','D','Eb','E','F','F#','G','Ab','A','Bb','B']; keys.forEach(k=>{let o=document.createElement('option');o.value=k;o.textContent=k;$('key').append(o)});$('key').value='G';
 const SETTINGS_KEY='hey-sam-settings-v1';
-const settingIds=['appInstrument','instrument','key','quality','scale','octaves','meter','rhythm','difficulty','count','start','cadence','mastervol','clickvol','melvol','tempo','mode','advance','listen','timelineNotation','timelineView'];
-try{const saved=JSON.parse(localStorage.getItem(SETTINGS_KEY)||'{}');for(const id of settingIds){if(id==='listen'){if(saved.listen!==undefined)$(id).checked=saved.listen===true||saved.listen==='true';continue;}if(saved[id]!==undefined&&Array.from($(id).options||[]).some(o=>o.value===String(saved[id]))||saved[id]!==undefined&&$(id).type==='range'&&Number.isFinite(Number(saved[id]))){$(id).value=id==='mode'?({'alternate':'repeat','once':'repeat'}[saved[id]]||String(saved[id])):String(saved[id]);}}}catch(e){console.warn('Could not restore settings',e)}
+const settingIds=['appInstrument','instrument','key','quality','scale','octaves','lockOctave','meter','rhythm','difficulty','count','start','cadence','mastervol','clickvol','melvol','tempo','mode','advance','listen','timelineNotation','timelineView'];
+try{const saved=JSON.parse(localStorage.getItem(SETTINGS_KEY)||'{}');for(const id of settingIds){if(id==='listen'||id==='lockOctave'){if(saved[id]!==undefined)$(id).checked=saved[id]===true||saved[id]==='true';continue;}if(saved[id]!==undefined&&Array.from($(id).options||[]).some(o=>o.value===String(saved[id]))||saved[id]!==undefined&&$(id).type==='range'&&Number.isFinite(Number(saved[id]))){$(id).value=id==='mode'?({'alternate':'repeat','once':'repeat'}[saved[id]]||String(saved[id])):String(saved[id]);}}}catch(e){console.warn('Could not restore settings',e)}
 function updateNoteSelection(){
  const minor=$('quality').value==='minor';
  const labels=minor?['Full Minor Scale','Minor Pentatonic Scale','Minor Triad']:['Full Major Scale','Major Pentatonic Scale','Major Triad'];
@@ -68,13 +69,14 @@ function updateNoteSelection(){
 $('quality').addEventListener('change',()=>{updateNoteSelection();saveSettings()});
 $('scale').addEventListener('change',()=>{updateNoteSelection();saveSettings()});
 updateNoteSelection();
-function saveSettings(){try{localStorage.setItem(SETTINGS_KEY,JSON.stringify(Object.fromEntries(settingIds.map(id=>[id,id==='listen'?$(id).checked:$(id).value]))))}catch(e){console.warn('Could not save settings',e)}}
+function saveSettings(){try{localStorage.setItem(SETTINGS_KEY,JSON.stringify(Object.fromEntries(settingIds.map(id=>[id,(id==='listen'||id==='lockOctave')?$(id).checked:$(id).value]))))}catch(e){console.warn('Could not save settings',e)}}
 for(const id of settingIds){$(id).addEventListener('input',saveSettings);$(id).addEventListener('change',saveSettings)}
 function updateMicHint(){$('micSettingHint').textContent=$('listen').checked?'On · microphone active during session':'Off · normal playback'}$('listen').addEventListener('change',updateMicHint);updateMicHint();
 
 let lastScoringNote=-1,timelineStart=0,timelineSlot=-1,timelineCells=[],timelineNotes=[],timelineVerdicts=[],timelineJudged=[],timelineEnabled=false;
 let paused=false,ctx=null, master=null, guitarSamples=new Map(), woodSamples=[], timer=null, nextTick=0, tickIndex=0, phrase=[], phraseBeats=4, phaseStart=0, session=false, melodyStopped=false, epoch=0, activeMode='loop', pendingMode=null, countBeats=0, phraseNumber=0;
 const num=id=>Number($(id).value), pick=a=>a[Math.floor(Math.random()*a.length)], clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+let sessionBase=null;
 function makePhrase(){
  const root=keys.indexOf($('key').value), minor=$('quality').value==='minor';
  const scaleSemis=minor?[0,2,3,5,7,8,10]:[0,2,4,5,7,9,11];
@@ -86,12 +88,25 @@ function makePhrase(){
  // allowing the entire selected octave span to remain playable.
  const limits={Guitar:[40,76],Mandolin:[55,88],Mandola:[48,81],'Tenor Guitar CGDA':[48,81],'Tenor Guitar GDAE':[55,88],Piano:[40,96]};
  const [lowest,highest]=limits[$('instrument').value]||limits.Guitar;
- let base=60+root;
- const ceiling=highest-12*oct;
- while(base>ceiling)base-=12;
- while(base+12<=ceiling)base+=12;
- while(base<lowest)base+=12;
- if(base+12*oct>highest)base-=12;
+ // Choose a fresh valid register for each phrase, or keep one for the entire session.
+ const possibleBases=[];
+ for(let b=root+12*2;b<=highest;b+=12){
+  if(b>=lowest&&b+12*oct<=highest)possibleBases.push(b);
+ }
+ // Rare narrow-range fallback, preserving the original safe register logic.
+ let base;
+ if(possibleBases.length){
+  if($('lockOctave').checked&&sessionBase!==null&&possibleBases.includes(sessionBase))base=sessionBase;
+  else base=pick(possibleBases);
+ }else{
+  base=60+root;
+  const ceiling=highest-12*oct;
+  while(base>ceiling)base-=12;
+  while(base+12<=ceiling)base+=12;
+  while(base<lowest)base+=12;
+  if(base+12*oct>highest)base-=12;
+ }
+ if($('lockOctave').checked)sessionBase=base;
 
  for(let n=0;n<=12*oct;n++)if(degrees.includes(n%12))candidates.push(n);
  const starters=candidates.filter(n=>$('start').value==='any'||($('start').value==='tonic'?n%12===0:triad.includes(n%12)));
@@ -227,7 +242,7 @@ function buildTimeline(){
  const host=$('timeline');host.replaceChildren();timelineCells=[];timelineNotes=[];
  const meter=num('meter'),total=phraseBeats;
  for(let b=0;b<total;b+=meter){
-  const bar=document.createElement('div');bar.className='tbar';bar.style.width=(Math.min(meter,total-b)*40)+'px';
+  const bar=document.createElement('div');bar.className='tbar';bar.style.width='calc(100% - 4px)';
   for(let j=0;j<meter&&b+j<total;j++){
    const cell=document.createElement('div');cell.className='tcell';const beatNum=document.createElement('span');beatNum.className='beatnum';beatNum.textContent=String(j+1);cell.append(beatNum);bar.append(cell);timelineCells.push(cell);
   }host.append(bar);
@@ -236,16 +251,27 @@ function buildTimeline(){
  phrase.forEach((n,i)=>{
   const node=document.createElement('div');node.className='tnote';
   // Position each note by its duration, including eighth and sustained notes.
-  const left=start*40+3, width=Math.max(20,n.beats*40-5);
+  const left=3, width=40;
   node.style.position='absolute';node.style.left=left+'px';node.style.width=width+'px';node.style.right='auto';
-  node.style.top='9px';node.style.bottom='21px';node.style.height='51px';
+  node.style.top='14px';node.style.bottom='27px';node.style.height='96px';
   // Positioned relative to the timeline, not individual measure cells.
   host.append(node);timelineNotes.push({node,start,end:start+n.beats,midi:n.midi});start+=n.beats;
  });
  host.style.position='relative';host.style.minWidth='0';
- // Each measure is exactly 40px per beat, matching note positioning.
- host.querySelectorAll('.tbar').forEach(bar=>{bar.style.flexShrink='0'});
+ // One complete measure occupies the full visible timeline width.
+ layoutTimeline();
  resetTimeline();
+}
+function layoutTimeline(){
+ const host=$('timeline'), bars=[...host.querySelectorAll('.tbar')];
+ if(!bars.length)return;
+ const meter=num('meter'), width=Math.max(1,host.clientWidth-4);
+ bars.forEach(bar=>{bar.style.width=width+'px';bar.style.flexShrink='0'});
+ timelineNotes.forEach(n=>{
+  const left=(n.start/meter)*width+3;
+  const noteWidth=Math.max(20,(n.end-n.start)/meter*width-6);
+  n.node.style.left=left+'px';n.node.style.width=noteWidth+'px';
+ });
 }
 function resetTimeline(){lastScoringNote=-1;timelineVerdicts=phrase.map(()=>null);timelineJudged=phrase.map(()=>false);paintTimeline();}
 function paintTimeline(){
@@ -428,13 +454,13 @@ function stop(){
 $('startbtn').onclick=async()=>{
  stop();
  try{ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();await ctx.resume();}catch(e){$('status').textContent='Could not start audio';return;}
- initAudio();makePhrase();preloadPhraseSamples();activeMode=$('mode').value;pendingMode=null;melodyStopped=false;countBeats=num('meter');tickIndex=0;nextTick=ctx.currentTime+.1;timelineStart=nextTick+countBeats*60/num('tempo');session=true;paused=false;timelineEnabled=true;timelineSlot=-1;resetTimeline();
+ sessionBase=null;initAudio();makePhrase();preloadPhraseSamples();activeMode=$('mode').value;pendingMode=null;melodyStopped=false;countBeats=num('meter');tickIndex=0;nextTick=ctx.currentTime+.1;timelineStart=nextTick+countBeats*60/num('tempo');session=true;paused=false;timelineEnabled=true;timelineSlot=-1;resetTimeline();
  const listening=$('listen').checked;updateLiveHeight();$('settingsPanel').classList.toggle('session-active',listening);$('livePanel').hidden=!listening;
  $('liveNote').textContent='—';$('liveNote').style.opacity='1';$('levelFill').style.width='0';$('levelText').textContent='Input level: —';lastDetectedAt=0;$('liveDetails').textContent='Play a single note on your instrument';
  $('startbtn').classList.add('playing');$('stopall').classList.add('playing');timer=setInterval(scheduler,25);scheduler();$('status').textContent='Playing · count-in 1 measure';
  requestWakeLock();if(listening){configureAudioSession('play-and-record');startMic(++micSession);}else{configureAudioSession('playback');$('status').textContent='Playing · microphone off · count-in 1 measure';}
 };
-window.addEventListener('resize',()=>{if(session&&$('listen').checked)updateLiveHeight()});
+window.addEventListener('resize',()=>{if(session&&$('listen').checked)updateLiveHeight();layoutTimeline()});
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&session)requestWakeLock();});
 $('appInstrument').addEventListener('change',()=>{if(ctx)preloadPhraseSamples();});
 $('mode').onchange=()=>{pendingMode=$('mode').value;$('status').textContent='Mode change queued: '+(pendingMode==='loop'?'Play Along':'Listen and Repeat')};
