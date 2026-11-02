@@ -85,10 +85,10 @@
 <div class="settings-row"><label>Meter<select id="meter"><option value="4">4/4</option><option value="3">3/4</option></select></label><label>Rhythm<select id="rhythm"><option value="q">Quarter</option><option value="qh">Quarter / half</option><option value="eqh">8th / ¼ / ½</option></select></label><label>Melodic difficulty<select id="difficulty"><option value="easy">Easy</option><option value="medium" selected>Medium</option><option value="hard">Hard</option><option value="free">Unrestricted</option></select></label></div>
 <div class="settings-row"><label>Phrase notes<select id="count"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select></label><label>Start note<select id="start"><option value="tonic">Tonic</option><option value="triad">Triad tone</option><option value="any">Any note</option></select></label><label>End note<select id="cadence"><option value="tonic">Tonic</option><option value="chord">Triad tone</option><option value="open">Anticipatory Notes</option><option value="any">Any note</option></select></label></div>
 </div>
-<div class="settings-row two"><label>Playback mode<select id="mode"><option value="loop">Play Along</option><option value="repeat">Listen and Repeat</option></select></label><label>Advancement<select id="advance"><option value="manual">User controlled</option><option value="auto">Automatic (future)</option></select></label></div>
+<div class="settings-row two"><label>Playback mode<select id="mode"><option value="loop">Play Along</option><option value="repeat">Listen and Repeat</option></select></label><label>Advancement<select id="advance"><option value="manual">User controlled</option><option value="auto">Automatic · 2 correct</option></select></label></div>
 <div class="mic-setting" id="micSetting"><label for="listen"><input type="checkbox" id="listen"> Listen to My Playing</label><span id="micSettingHint">Microphone Off</span></div>
 <div class="mix-row" id="sliderRow"><div class="mix-controls"><label class="vol-item" for="mastervol">Master<input id="mastervol" type="range" min="0" max="100" value="65"><output id="masterval">65</output></label><label class="vol-item divider-before" for="clickvol">Click<input id="clickvol" type="range" min="0" max="100" value="65"><output id="clickval">65</output></label><label class="vol-item" for="melvol">Melody<input id="melvol" type="range" min="0" max="100" value="30"><output id="melval">30</output></label><label class="vol-item divider-before" for="tempo">Tempo<input id="tempo" type="range" min="40" max="180" step="5" value="80"><output id="tempoval">80</output></label><div class="tempo-buttons"><button class="secondary" id="faster" type="button">Faster</button><button class="secondary" id="slower" type="button">Slower</button></div></div>
-</section><section class="panel"><div class="controls"><button id="startbtn" class="start-button">Start Session</button><button class="secondary stop-button stop-all" id="stopall">Stop Session</button><button class="secondary pause-button" id="pausebtn">Pause Session</button><button class="secondary next-button" id="next">Next <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m4 5 10 7-10 7V5Z"/><path d="M18 5v14"/></svg></button></div><p id="status">Ready</p><div id="phrase-wrap"><div id="notes" aria-live="polite"></div><button id="reveal" type="button">Show Phrase</button></div><small>Browser prototype v2.5. Beat-aligned phrase timeline with one-shot pitch feedback. Adaptive background-noise calibration with dBFS and pitch-confidence feedback. Phrase range follows the selected user instrument. Microphone is optional and off by default. Uses Meta Open Sound CC0 steel-string guitar samples when available, with a synthesized fallback. 37 guitar and 57 piano samples are bundled for offline use; headphones recommended with microphone listening. If silent, check iPhone Silent Mode. Voice commands and automatic grading are not yet implemented.</small></section></main><script>
+</section><section class="panel"><div class="controls"><button id="startbtn" class="start-button">Start Session</button><button class="secondary stop-button stop-all" id="stopall">Stop Session</button><button class="secondary pause-button" id="pausebtn">Pause Session</button><button class="secondary next-button" id="next">Next <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m4 5 10 7-10 7V5Z"/><path d="M18 5v14"/></svg></button></div><p id="status">Ready</p><div id="phrase-wrap"><div id="notes" aria-live="polite"></div><button id="reveal" type="button">Show Phrase</button></div><small>Browser prototype v2.6. Beat-aligned phrase timeline with one-shot pitch feedback. Adaptive background-noise calibration with dBFS and pitch-confidence feedback. Phrase range follows the selected user instrument. Microphone is optional and off by default. Uses Meta Open Sound CC0 steel-string guitar samples when available, with a synthesized fallback. 37 guitar and 57 piano samples are bundled for offline use; headphones recommended with microphone listening. If silent, check iPhone Silent Mode. Voice commands are not implemented. Automatic advancement requires the microphone and two consecutive correct performances.</small></section></main><script>
 const $=id=>document.getElementById(id), keys=['C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B'], names=['C','C#','D','Eb','E','F','F#','G','Ab','A','Bb','B']; keys.forEach(k=>{let o=document.createElement('option');o.value=k;o.textContent=k;$('key').append(o)});$('key').value='G';
 const SETTINGS_KEY='hey-sam-settings-v1';
 const settingIds=['appInstrument','instrument','key','quality','scale','octaves','lockOctave','meter','rhythm','difficulty','count','start','cadence','mastervol','clickvol','melvol','tempo','mode','advance','listen','timelineNotation','timelineView'];
@@ -108,6 +108,7 @@ function saveSettings(){try{localStorage.setItem(SETTINGS_KEY,JSON.stringify(Obj
 for(const id of settingIds){$(id).addEventListener('input',saveSettings);$(id).addEventListener('change',saveSettings)}
 function updateMicHint(){$('micSettingHint').textContent=$('listen').checked?'Microphone Active':'Microphone Off'}$('listen').addEventListener('change',updateMicHint);updateMicHint();
 
+let correctPhraseStreak=0,autoAdvancePending=false;
 let lastScoringNote=-1,timelineStart=0,timelineSlot=-1,timelineCells=[],timelineNotes=[],timelineVerdicts=[],timelineJudged=[],timelineEnabled=false;
 let paused=false,ctx=null, master=null, guitarSamples=new Map(), woodSamples=[], timer=null, nextTick=0, tickIndex=0, phrase=[], phraseBeats=4, phaseStart=0, session=false, melodyStopped=false, epoch=0, activeMode='loop', pendingMode=null, countBeats=0, phraseNumber=0;
 const num=id=>Number($(id).value), pick=a=>a[Math.floor(Math.random()*a.length)], clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
@@ -341,6 +342,34 @@ function acceptPitchVote(midi,at,confidence){
  if(c.votes.length>=4&&now-c.started>=125)resolveCandidate(i);
 }
 
+// Judge a whole completed user turn before clearing the timeline for the next turn.
+// In Listen and Repeat, only the user's response turn counts.
+function completePhraseTurn(slot){
+ if(slot<0||!session||$('advance').value!=='auto'||!$('listen').checked)return;
+ if(activeMode==='repeat'&&slot%2===0)return;
+ noteCandidates.forEach((c,i)=>{if(c&&!timelineJudged[i]&&c.votes.length)resolveCandidate(i);});
+ const perfect=timelineNotes.length>0&&timelineNotes.every((n,i)=>timelineJudged[i]&&timelineVerdicts[i]==='ok');
+ correctPhraseStreak=perfect?correctPhraseStreak+1:0;
+ if(correctPhraseStreak>=2){autoAdvancePending=true;correctPhraseStreak=0;playSuccessChime();$('status').textContent='Two perfect phrases! Advancing…';}
+ else $('status').textContent=perfect?'Perfect! 1 of 2 in a row':'Try again · streak reset';
+}
+function playSuccessChime(){
+ if(!ctx||!master)return;
+ // Original synthesized cash-register-style success jingle; no external audio.
+ const start=ctx.currentTime+.02;
+ [880,1174.66,1567.98,2093].forEach((hz,i)=>{
+  const osc=ctx.createOscillator(),g=ctx.createGain(),t=start+i*.085;
+  osc.type=i===3?'triangle':'square';osc.frequency.setValueAtTime(hz,t);
+  g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.075,t+.008);
+  g.gain.exponentialRampToValueAtTime(.0001,t+.15);
+  osc.connect(g).connect(master);osc.start(t);osc.stop(t+.17);
+ });
+}
+function nextPhrase(){
+ correctPhraseStreak=0;autoAdvancePending=false;makePhrase();preloadPhraseSamples();
+ if(session){tickIndex=0;countBeats=num('meter');nextTick=Math.max(ctx.currentTime+.15,nextTick);timelineStart=nextTick+countBeats*60/num('tempo');timelineSlot=-1;resetTimeline();}
+ $('status').textContent='New phrase ready · count-in';
+}
 function paintTimeline(){
  const study=$('timelineView').value==='study';
  timelineNotes.forEach((item,i)=>{
@@ -354,7 +383,11 @@ function timelineClock(){
  const bps=60/num('tempo'), elapsed=(ctx.currentTime-timelineStart)/bps;
  const slot=elapsed>=0?Math.floor(elapsed/phraseBeats):-1;
  const beat=elapsed>=0?((elapsed%phraseBeats)+phraseBeats)%phraseBeats:-1;
- if(slot!==timelineSlot){timelineSlot=slot;resetTimeline();}
+ if(slot!==timelineSlot){
+  if(timelineSlot>=0)completePhraseTurn(timelineSlot);
+  if(autoAdvancePending){nextPhrase();return;}
+  timelineSlot=slot;resetTimeline();
+ }
  const currentBeat=Math.floor(beat);
  timelineCells.forEach((cell,i)=>cell.classList.toggle('active',i===currentBeat));
  const active=timelineNotes.findIndex(n=>beat>=n.start&&beat<n.end);
@@ -515,7 +548,7 @@ async function requestWakeLock(){
  try{wakeLock=await navigator.wakeLock.request('screen');wakeLock.addEventListener('release',()=>{wakeLock=null;});}catch(e){console.info('Wake lock unavailable',e);}
 }
 function stop(){
- session=false;paused=false;$('pausebtn').classList.remove('paused');$('pausebtn').textContent='Pause Session';if(ctx&&ctx.state==='suspended')void ctx.resume().catch(()=>{});timelineEnabled=false;clearInterval(timer);timer=null;epoch++;stopMic();
+ correctPhraseStreak=0;autoAdvancePending=false;session=false;paused=false;$('pausebtn').classList.remove('paused');$('pausebtn').textContent='Pause Session';if(ctx&&ctx.state==='suspended')void ctx.resume().catch(()=>{});timelineEnabled=false;clearInterval(timer);timer=null;epoch++;stopMic();
  if(wakeLock){const lock=wakeLock;wakeLock=null;lock.release().catch(()=>{});}
  $('livePanel').hidden=true;$('settingsPanel').classList.remove('session-active');
  $('startbtn').classList.remove('playing');$('stopall').classList.remove('playing');$('status').textContent='Stopped';
@@ -523,7 +556,7 @@ function stop(){
 $('startbtn').onclick=async()=>{
  stop();
  try{ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();await ctx.resume();}catch(e){$('status').textContent='Could not start audio';return;}
- sessionBase=null;initAudio();makePhrase();preloadPhraseSamples();activeMode=$('mode').value;pendingMode=null;melodyStopped=false;countBeats=num('meter');tickIndex=0;nextTick=ctx.currentTime+.1;timelineStart=nextTick+countBeats*60/num('tempo');session=true;paused=false;timelineEnabled=true;timelineSlot=-1;resetTimeline();
+ correctPhraseStreak=0;autoAdvancePending=false;sessionBase=null;initAudio();makePhrase();preloadPhraseSamples();activeMode=$('mode').value;pendingMode=null;melodyStopped=false;countBeats=num('meter');tickIndex=0;nextTick=ctx.currentTime+.1;timelineStart=nextTick+countBeats*60/num('tempo');session=true;paused=false;timelineEnabled=true;timelineSlot=-1;resetTimeline();
  const listening=$('listen').checked;updateLiveHeight();$('settingsPanel').classList.toggle('session-active',listening);$('livePanel').hidden=!listening;
  $('liveNote').textContent='—';$('liveNote').style.opacity='1';$('levelFill').style.width='0';$('levelText').textContent='Input level: —';lastDetectedAt=0;$('liveDetails').textContent='Play a single note on your instrument';
  $('startbtn').classList.add('playing');$('stopall').classList.add('playing');timer=setInterval(scheduler,25);scheduler();$('status').textContent='Playing · count-in 1 measure';
@@ -531,8 +564,9 @@ $('startbtn').onclick=async()=>{
 };
 window.addEventListener('resize',()=>{if(session&&$('listen').checked)updateLiveHeight();layoutTimeline()});
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&session)requestWakeLock();});
+$('advance').addEventListener('change',()=>{correctPhraseStreak=0;if($('advance').value==='auto'&&!$('listen').checked)$('status').textContent='Automatic advancement requires Listen to My Playing';});
 $('appInstrument').addEventListener('change',()=>{if(ctx)preloadPhraseSamples();});
-$('mode').onchange=()=>{pendingMode=$('mode').value;$('status').textContent='Mode change queued: '+(pendingMode==='loop'?'Play Along':'Listen and Repeat')};
+$('mode').onchange=()=>{correctPhraseStreak=0;pendingMode=$('mode').value;$('status').textContent='Mode change queued: '+(pendingMode==='loop'?'Play Along':'Listen and Repeat')};
 $('pausebtn').onclick=async()=>{
  if(!session)return;
  paused=!paused;
@@ -542,7 +576,7 @@ $('pausebtn').onclick=async()=>{
  else{await ctx.resume();$('status').textContent='Session resumed';scheduler();}
 };
 $('stopall').onclick=stop;
-$('next').onclick=()=>{if(paused)return;makePhrase();preloadPhraseSamples();if(session){tickIndex=0;countBeats=num('meter');nextTick=Math.max(ctx.currentTime+.1,nextTick);timelineStart=nextTick+countBeats*60/num('tempo');timelineSlot=-1;resetTimeline();}$('status').textContent='New phrase ready'};
+$('next').onclick=()=>{if(!paused)nextPhrase()};
 
 $('slower').onclick=()=>{$('tempo').value=clamp(num('tempo')-5,40,180);$('tempoval').textContent=$('tempo').value;saveSettings()};$('faster').onclick=()=>{$('tempo').value=clamp(num('tempo')+5,40,180);$('tempoval').textContent=$('tempo').value;saveSettings()};
 
