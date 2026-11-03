@@ -79,16 +79,16 @@
 #livePanel .input-level{align-self:center}
 #sliderRow{margin-top:0}
 </style></head><body><main><section class="panel settings" id="settingsPanel" aria-label="Practice settings">
-<div id="livePanel" hidden aria-live="off"><div class="live-head"><strong>Phrase Timeline</strong><span id="micstate">Starting microphone…</span></div><div class="timeline-options"><label>Display <select id="timelineNotation"><option value="degree">Scale Degrees</option><option value="letter">Note Letters</option></select></label><label>View <select id="timelineView"><option value="practice">Practice</option><option value="study">Study</option></select></label></div><div id="timeline" aria-label="Beat-aligned phrase timeline"></div><div id="timelineHint">Headphones recommended when listening is on.</div><div class="live-note" id="liveNote">—</div><div id="liveDetails">Play a single note on your instrument</div><div id="scoredNote" style="font-size:11px;color:#a8d6e3;min-height:14px">Timeline scored: —</div><div class="input-level" role="meter" aria-label="Microphone input level"><div class="input-level-fill" id="levelFill"></div></div><div id="levelText">Input level: —</div><div class="live-hint" id="liveHint">Last detected note stays visible; dim means no clear note is sounding.</div></div>
-<div class="settings-row header"><h1 class="brand">KENNY<br>PICKETT?<span class="version">v2.7</span></h1><span class="instrument-selectors"><label>App Instrument<select id="appInstrument"><option value="guitar">Acoustic Guitar</option><option value="piano">Piano</option></select></label><label>User Instrument<select id="instrument"><option>Guitar</option><option>Mandolin</option><option>Mandola</option><option>Tenor Guitar CGDA</option><option>Tenor Guitar GDAE</option><option>Piano</option></select></label></span></div>
+<div id="livePanel" hidden aria-live="off"><div class="live-head"><strong>Phrase Timeline</strong><span id="micstate">Starting microphone…</span></div><div class="timeline-options"><label>Display <select id="timelineNotation"><option value="degree">Scale Degrees</option><option value="letter">Note Letters</option></select></label><label>View <select id="timelineView"><option value="practice">Practice</option><option value="study">Study</option></select></label></div><div id="timeline" aria-label="Beat-aligned phrase timeline"></div><div id="timelineHint">Headphones recommended when listening is on.</div><div class="live-note" id="liveNote" style="display:none">—</div><div id="liveDetails" style="display:none">Play a single note on your instrument</div><div id="scoredNote" style="display:none;font-size:11px;color:#a8d6e3;min-height:14px">Timeline scored: —</div><div class="input-level" style="display:none" role="meter" aria-label="Microphone input level"><div class="input-level-fill" id="levelFill"></div></div><div id="levelText" style="display:none">Input level: —</div><div class="live-hint" id="liveHint" style="display:none">Last detected note stays visible; dim means no clear note is sounding.</div></div>
+<div class="settings-row header"><h1 class="brand">KENNY<br>PICKETT?<span class="version">v2.8</span></h1><span class="instrument-selectors"><label>App Instrument<select id="appInstrument"><option value="guitar">Acoustic Guitar</option><option value="piano">Piano</option></select></label><label>User Instrument<select id="instrument"><option>Guitar</option><option>Mandolin</option><option>Mandola</option><option>Tenor Guitar CGDA</option><option>Tenor Guitar GDAE</option><option>Piano</option></select></label></span></div>
 <div class="settings-row"><label>Key<div class="key-pair"><select id="key"></select><select id="quality" aria-label="Major or minor"><option value="major">Major</option><option value="minor">Minor</option></select></div></label><label>Note Selection<select id="scale"><option value="major">Full Major Scale</option><option value="pent">Major Pentatonic Scale</option><option value="triad">Major Triad</option></select></label><div class="range-keep"><label>Range<select id="octaves"><option value="1">1 octave</option><option value="2">2 octaves</option></select></label><label class="keep-label">Keep<input id="lockOctave" type="checkbox" aria-label="Keep the same octave range throughout the session" title="Keep this octave range throughout the session"></label></div></div>
 <div class="settings-row"><label>Meter<select id="meter"><option value="4">4/4</option><option value="3">3/4</option></select></label><label>Rhythm<select id="rhythm"><option value="q">Quarter</option><option value="qh">Quarter / half</option><option value="eqh">8th / ¼ / ½</option></select></label><label>Melodic difficulty<select id="difficulty"><option value="easy">Easy</option><option value="medium" selected>Medium</option><option value="hard">Hard</option><option value="free">Unrestricted</option></select></label></div>
 <div class="settings-row"><label>Phrase notes<select id="count"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select></label><label>Start note<select id="start"><option value="tonic">Tonic</option><option value="triad">Triad tone</option><option value="any">Any note</option></select></label><label>End note<select id="cadence"><option value="tonic">Tonic</option><option value="chord">Triad tone</option><option value="open">Anticipatory Notes</option><option value="any">Any note</option></select></label></div>
 </div>
-<div class="settings-row two"><label>Playback mode<select id="mode"><option value="loop">Play Along</option><option value="repeat">Listen and Repeat</option></select></label><label>Advancement<select id="advance"><option value="manual">User controlled</option><option value="auto">Automatic · 2 of 3 correct</option></select></label></div>
+<div class="settings-row two"><label>Playback mode<select id="mode"><option value="loop">Play Along</option><option value="repeat">Listen and Repeat</option></select></label><label>Advancement<select id="advance"><option value="manual">User controlled</option><option value="auto">Automatic · 1 perfect or 2 correct</option></select></label></div>
 <div class="mic-setting" id="micSetting"><label for="listen"><input type="checkbox" id="listen"> Listen to My Playing</label><span id="micSettingHint">Microphone Off</span></div>
 <div class="mix-row" id="sliderRow"><div class="mix-controls"><label class="vol-item" for="mastervol">Master<input id="mastervol" type="range" min="0" max="100" value="65"><output id="masterval">65</output></label><label class="vol-item divider-before" for="clickvol">Click<input id="clickvol" type="range" min="0" max="100" value="65"><output id="clickval">65</output></label><label class="vol-item" for="melvol">Melody<input id="melvol" type="range" min="0" max="100" value="30"><output id="melval">30</output></label><label class="vol-item divider-before" for="tempo">Tempo<input id="tempo" type="range" min="40" max="180" step="5" value="80"><output id="tempoval">80</output></label><div class="tempo-buttons"><button class="secondary" id="faster" type="button">Faster</button><button class="secondary" id="slower" type="button">Slower</button></div></div>
-</section><section class="panel"><div class="controls"><button id="startbtn" class="start-button">Start Session</button><button class="secondary stop-button stop-all" id="stopall">Stop Session</button><button class="secondary pause-button" id="pausebtn">Pause Session</button><button class="secondary next-button" id="next">Next <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m4 5 10 7-10 7V5Z"/><path d="M18 5v14"/></svg></button></div><p id="status">Ready</p><div id="phrase-wrap"><div id="notes" aria-live="polite"></div><button id="reveal" type="button">Show Phrase</button></div><small>Browser prototype v2.7. Beat-aligned phrase timeline with one-shot pitch feedback. Adaptive background-noise calibration with dBFS and pitch-confidence feedback. Phrase range follows the selected user instrument. Microphone is optional and off by default. Uses Meta Open Sound CC0 steel-string guitar samples when available, with a synthesized fallback. 37 guitar and 57 piano samples are bundled for offline use; headphones recommended with microphone listening. If silent, check iPhone Silent Mode. Voice commands are not implemented. Automatic advancement requires the microphone and two correct performances within the last three attempts.</small></section></main><script>
+</section><section class="panel"><div class="controls"><button id="startbtn" class="start-button">Start Session</button><button class="secondary stop-button stop-all" id="stopall">End Session</button><button class="secondary pause-button" id="pausebtn">Pause Session</button><button class="secondary next-button" id="next">Next <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m4 5 10 7-10 7V5Z"/><path d="M18 5v14"/></svg></button></div><p id="status">Ready</p><div id="phrase-wrap"><div id="notes" aria-live="polite"></div><button id="reveal" type="button">Show Phrase</button></div><small>Browser prototype v2.8. Beat-aligned phrase timeline with one-shot pitch feedback. Adaptive background-noise calibration with dBFS and pitch-confidence feedback. Phrase range follows the selected user instrument. Microphone is optional and off by default. Uses Meta Open Sound CC0 steel-string guitar samples when available, with a synthesized fallback. 37 guitar and 57 piano samples are bundled for offline use; headphones recommended with microphone listening. If silent, check iPhone Silent Mode. Voice command Next is available in supported browsers. Automatic advancement requires the microphone and a perfect first try or two correct performances total.</small></section></main><dialog id="statsDialog" aria-labelledby="statsTitle" style="max-width:min(94vw,430px);border:1px solid #5c9e9c;border-radius:14px;background:#1b3035;color:#f1f8f8;padding:22px;box-shadow:0 12px 60px #0009"><h2 id="statsTitle" style="margin-top:0">Session Summary</h2><div id="statsBody" style="line-height:1.9"></div><button id="closeStats" type="button" style="width:100%;margin-top:15px;padding:12px">Close</button></dialog><script>
 const $=id=>document.getElementById(id), keys=['C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B'], names=['C','C#','D','Eb','E','F','F#','G','Ab','A','Bb','B']; keys.forEach(k=>{let o=document.createElement('option');o.value=k;o.textContent=k;$('key').append(o)});$('key').value='G';
 const SETTINGS_KEY='hey-sam-settings-v1';
 const settingIds=['appInstrument','instrument','key','quality','scale','octaves','lockOctave','meter','rhythm','difficulty','count','start','cadence','mastervol','clickvol','melvol','tempo','mode','advance','listen','timelineNotation','timelineView'];
@@ -109,6 +109,13 @@ for(const id of settingIds){$(id).addEventListener('input',saveSettings);$(id).a
 function updateMicHint(){$('micSettingHint').textContent=$('listen').checked?'Microphone Active':'Microphone Off'}$('listen').addEventListener('change',updateMicHint);updateMicHint();
 
 let recentPhraseResults=[],autoAdvancePending=false;
+let sessionStats=null,phraseStats=null,voiceRecognition=null,voiceRestart=false;
+function newPhraseStats(){phraseStats={attempts:0,correct:0,firstCorrect:false,secondTryCorrect:false};}
+function finishPhraseStats(){if(!sessionStats||!phraseStats||!phraseStats.attempts)return;const p=phraseStats;sessionStats.phrases++;sessionStats.attempts+=p.attempts;sessionStats.firstTry+=Number(p.firstCorrect);sessionStats.firstTwo+=Number(p.firstCorrect||p.secondTryCorrect);sessionStats.perfectTurns+=p.correct;sessionStats.completed+=Number(p.firstCorrect||p.correct>=2);}
+function showSessionStats(){if(!sessionStats)return;const s=sessionStats,n=s.phrases,pct=x=>n?(100*x/n).toFixed(0)+'%':'—';$('statsBody').innerHTML=['Phrases practiced: <b>'+n+'</b>','Total attempts: <b>'+s.attempts+'</b>','Average attempts per phrase: <b>'+(n?(s.attempts/n).toFixed(1):'—')+'</b>','Perfect on first try: <b>'+pct(s.firstTry)+'</b>','Correct at least once in first two tries: <b>'+pct(s.firstTwo)+'</b>','Phrases mastered: <b>'+s.completed+'</b>','Perfect performances: <b>'+s.perfectTurns+'</b>','Duration: <b>'+Math.round((Date.now()-s.started)/60000)+' min</b>'].join('<div>')+'</div>';const d=$('statsDialog');if(typeof d.showModal==='function')d.showModal();else d.setAttribute('open','');}
+function stopVoice(){voiceRestart=false;if(voiceRecognition){const r=voiceRecognition;voiceRecognition=null;try{r.abort();}catch(e){}}}
+function startVoice(){stopVoice();const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR||!session||!$('listen').checked)return;try{const r=new SR();voiceRecognition=r;voiceRestart=true;r.lang='en-US';r.continuous=true;r.interimResults=false;r.onresult=e=>{for(let i=e.resultIndex;i<e.results.length;i++){if(!e.results[i].isFinal)continue;const words=e.results[i][0].transcript.trim().toLowerCase().replace(/[^a-z ]/g,'');if(/\bnext\b/.test(words)&&session&&!paused){nextPhrase();break;}}};r.onerror=e=>{if(e.error==='not-allowed'||e.error==='service-not-allowed'){voiceRestart=false;$('status').textContent='Voice command unavailable; Next button still works';}};r.onend=()=>{if(voiceRestart&&voiceRecognition===r&&session&&!paused){try{r.start()}catch(e){}}};r.start();}catch(e){voiceRecognition=null;}}
+
 let lastScoringNote=-1,timelineStart=0,timelineSlot=-1,timelineCells=[],timelineNotes=[],timelineVerdicts=[],timelineJudged=[],timelineEnabled=false;
 let paused=false,ctx=null, master=null, guitarSamples=new Map(), woodSamples=[], timer=null, nextTick=0, tickIndex=0, phrase=[], phraseBeats=4, phaseStart=0, session=false, melodyStopped=false, epoch=0, activeMode='loop', pendingMode=null, countBeats=0, phraseNumber=0;
 const num=id=>Number($(id).value), pick=a=>a[Math.floor(Math.random()*a.length)], clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
@@ -349,20 +356,16 @@ function completePhraseTurn(slot){
  if(activeMode==='repeat'&&slot%2===0)return;
  noteCandidates.forEach((c,i)=>{if(c&&!timelineJudged[i]&&c.votes.length)resolveCandidate(i);});
  const perfect=timelineNotes.length>0&&timelineNotes.every((n,i)=>timelineJudged[i]&&timelineVerdicts[i]==='ok');
+ if(phraseStats){phraseStats.attempts++;if(perfect){phraseStats.correct++;if(phraseStats.attempts===1)phraseStats.firstCorrect=true;if(phraseStats.attempts===2)phraseStats.secondTryCorrect=true;}}
  if($('advance').value==='auto'){
-  recentPhraseResults.push(perfect);
-  if(recentPhraseResults.length>3)recentPhraseResults.shift();
-  const successes=recentPhraseResults.filter(Boolean).length;
-  if(perfect&&successes>=2){
-   autoAdvancePending=true;recentPhraseResults=[];playSuccessChime();
-   $('status').textContent='Two of three correct! Advancing…';
+  if(perfect&&(phraseStats?.attempts===1||phraseStats?.correct>=2)){
+   autoAdvancePending=true;playSuccessChime();
+   $('status').textContent=phraseStats.attempts===1?'Perfect first try! Advancing…':'Two correct! Advancing…';
   }else{
    if(perfect)playCorrectChime();
-   $('status').textContent=(perfect?'Correct! ':'Keep practicing · ')+successes+' of '+Math.min(3,recentPhraseResults.length)+' correct';
+   $('status').textContent=perfect?'Correct! Keep going':'Keep practicing';
   }
- }else if(perfect){
-  playCorrectChime();$('status').textContent='Correct phrase!';
- }
+ }else if(perfect){playCorrectChime();$('status').textContent='Correct phrase!';}
 }
 function playCorrectChime(){
  if(!ctx||!master)return;
@@ -389,7 +392,7 @@ function playSuccessChime(){
  });
 }
 function nextPhrase(){
- recentPhraseResults=[];autoAdvancePending=false;makePhrase();preloadPhraseSamples();
+ finishPhraseStats();newPhraseStats();recentPhraseResults=[];autoAdvancePending=false;makePhrase();preloadPhraseSamples();
  if(session){tickIndex=0;countBeats=num('meter');nextTick=Math.max(ctx.currentTime+.15,nextTick);timelineStart=nextTick+countBeats*60/num('tempo');timelineSlot=-1;resetTimeline();}
  $('status').textContent='New phrase ready · count-in';
 }
@@ -570,20 +573,22 @@ async function requestWakeLock(){
  if(!session||document.visibilityState!=='visible'||!('wakeLock' in navigator)||wakeLock)return;
  try{wakeLock=await navigator.wakeLock.request('screen');wakeLock.addEventListener('release',()=>{wakeLock=null;});}catch(e){console.info('Wake lock unavailable',e);}
 }
-function stop(){
+function stop(showSummary=false){
+ if(session){finishPhraseStats();stopVoice();}if(showSummary)showSessionStats();
  recentPhraseResults=[];autoAdvancePending=false;session=false;paused=false;$('pausebtn').classList.remove('paused');$('pausebtn').textContent='Pause Session';if(ctx&&ctx.state==='suspended')void ctx.resume().catch(()=>{});timelineEnabled=false;clearInterval(timer);timer=null;epoch++;stopMic();
  if(wakeLock){const lock=wakeLock;wakeLock=null;lock.release().catch(()=>{});}
  $('livePanel').hidden=true;$('settingsPanel').classList.remove('session-active');
  $('startbtn').classList.remove('playing');$('stopall').classList.remove('playing');$('status').textContent='Stopped';
 }
 $('startbtn').onclick=async()=>{
- stop();
+ stop(false);
+ sessionStats={started:Date.now(),phrases:0,attempts:0,firstTry:0,firstTwo:0,completed:0,perfectTurns:0};newPhraseStats();
  try{ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();await ctx.resume();}catch(e){$('status').textContent='Could not start audio';return;}
  recentPhraseResults=[];autoAdvancePending=false;sessionBase=null;initAudio();makePhrase();preloadPhraseSamples();activeMode=$('mode').value;pendingMode=null;melodyStopped=false;countBeats=num('meter');tickIndex=0;nextTick=ctx.currentTime+.1;timelineStart=nextTick+countBeats*60/num('tempo');session=true;paused=false;timelineEnabled=true;timelineSlot=-1;resetTimeline();
  const listening=$('listen').checked;updateLiveHeight();$('settingsPanel').classList.toggle('session-active',listening);$('livePanel').hidden=!listening;
  $('liveNote').textContent='—';$('liveNote').style.opacity='1';$('levelFill').style.width='0';$('levelText').textContent='Input level: —';lastDetectedAt=0;$('liveDetails').textContent='Play a single note on your instrument';
  $('startbtn').classList.add('playing');$('stopall').classList.add('playing');timer=setInterval(scheduler,25);scheduler();$('status').textContent='Playing · count-in 1 measure';
- requestWakeLock();if(listening){configureAudioSession('play-and-record');startMic(++micSession);}else{configureAudioSession('playback');$('status').textContent='Playing · microphone off · count-in 1 measure';}
+ requestWakeLock();if(listening){configureAudioSession('play-and-record');startMic(++micSession);startVoice();}else{configureAudioSession('playback');$('status').textContent='Playing · microphone off · count-in 1 measure';}
 };
 window.addEventListener('resize',()=>{if(session&&$('listen').checked)updateLiveHeight();layoutTimeline()});
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&session)requestWakeLock();});
@@ -595,10 +600,11 @@ $('pausebtn').onclick=async()=>{
  paused=!paused;
  $('pausebtn').classList.toggle('paused',paused);
  $('pausebtn').textContent=paused?'Unpause Session':'Pause Session';
- if(paused){await ctx.suspend();$('status').textContent='Session paused';}
- else{await ctx.resume();$('status').textContent='Session resumed';scheduler();}
+ if(paused){stopVoice();await ctx.suspend();$('status').textContent='Session paused';}
+ else{await ctx.resume();$('status').textContent='Session resumed';scheduler();startVoice();}
 };
-$('stopall').onclick=stop;
+$('stopall').onclick=()=>stop(true);
+$('closeStats').onclick=()=>{$('statsDialog').close?.();$('statsDialog').removeAttribute('open');};
 $('next').onclick=()=>{if(!paused)nextPhrase()};
 
 $('slower').onclick=()=>{$('tempo').value=clamp(num('tempo')-5,40,180);$('tempoval').textContent=$('tempo').value;saveSettings()};$('faster').onclick=()=>{$('tempo').value=clamp(num('tempo')+5,40,180);$('tempoval').textContent=$('tempo').value;saveSettings()};
