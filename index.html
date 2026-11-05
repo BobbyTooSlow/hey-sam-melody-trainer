@@ -114,8 +114,8 @@
 <div class="settings-row three"><label>Practice Style<select id="mode"><option value="loop">Play Along</option><option value="repeat">Listen and Repeat</option></select></label><label>Advancement<select id="advance"><option value="manual">Manual</option><option value="auto1">Auto 1X Correct</option><option value="auto2">Auto 2X Correct</option></select></label><label>Phrases / session<select id="sessionLimit"><option value="0">Unlimited</option><option value="5">5</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="30">30</option><option value="50">50</option></select></label></div>
 <div class="mic-setting" id="micSetting"><label>Note Recognition <select id="recognition" aria-label="Note recognition sensitivity"><option value="precise">Precise</option><option value="balanced" selected>Balanced</option><option value="forgiving">Forgiving</option></select></label><label for="listen"><input type="checkbox" id="listen"> Listen to My Playing</label><span id="micSettingHint">Microphone Off</span></div>
 <div id="keyboardRow" hidden aria-label="On-screen scale degree keyboard"><div class="keyboard-keys"><button type="button" class="degree-key" data-degree="1" aria-label="Play scale degree 1">1</button><button type="button" class="degree-key" data-degree="2" aria-label="Play scale degree 2">2</button><button type="button" class="degree-key" data-degree="3" aria-label="Play scale degree 3">3</button><button type="button" class="degree-key" data-degree="4" aria-label="Play scale degree 4">4</button><button type="button" class="degree-key" data-degree="5" aria-label="Play scale degree 5">5</button><button type="button" class="degree-key" data-degree="6" aria-label="Play scale degree 6">6</button><button type="button" class="degree-key" data-degree="7" aria-label="Play scale degree 7">7</button><button type="button" class="degree-key" data-degree="8" aria-label="Play scale degree 8">8</button></div></div>
-<div class="mix-row" id="sliderRow"><div class="mix-controls"><label class="vol-item" for="mastervol">Master<input id="mastervol" type="range" min="0" max="100" value="65"><output id="masterval">65</output></label><label class="vol-item divider-before" for="clickvol">Click<input id="clickvol" type="range" min="0" max="100" value="65"><output id="clickval">65</output></label><label class="vol-item" for="melvol">Melody<input id="melvol" type="range" min="0" max="100" value="30"><output id="melval">30</output></label><label class="vol-item divider-before" for="tempo">Tempo<input id="tempo" type="range" min="40" max="180" step="5" value="80"><output id="tempoval">80</output></label><div class="tempo-buttons"><button class="secondary" id="faster" type="button">Faster</button><button class="secondary" id="slower" type="button">Slower</button><button id="aboutVersion" type="button" aria-label="About KENNY PICKETT version 4.9.5">v4.9.7</button></div></div>
-</section><section class="panel"><div class="controls"><button id="startbtn" class="start-button">Start Session</button><button class="secondary stop-button stop-all" id="stopall">End Session</button><button class="secondary pause-button" id="pausebtn">Pause Session</button><button class="secondary next-button" id="next">Next <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m4 5 10 7-10 7V5Z"/><path d="M18 5v14"/></svg></button></div><p id="status">Ready</p><div id="phrase-wrap"><div id="notes" aria-live="polite"></div><button id="reveal" type="button">Show Phrase</button></div></section></main><dialog id="calibrationDialog" aria-labelledby="calibrationTitle" style="max-width:min(94vw,420px);border:1px solid #5c9e9c;border-radius:14px;background:#1b3035;color:#f1f8f8;padding:22px;text-align:center"><h2 id="calibrationTitle">Warm-up Taps</h2><p>Tap along with the metronome. The first four beats are practice. Keep tapping until your timing is consistent.</p><p id="calibrationStatus" aria-live="polite">Getting ready…</p><button id="calibrationTap" type="button" style="display:block;width:168px;height:168px;border-radius:50%;margin:18px auto;background:#d92632;color:white;font-size:29px;font-weight:900;border:5px solid #ff9097;box-shadow:0 5px 18px #0007;touch-action:manipulation">Tap Me</button><p id="calibrationReadings" aria-live="polite" style="font-size:13px;line-height:1.5;min-height:2em"></p><p id="startupStage" aria-live="polite" style="font-size:12px;color:#d5e7e7;white-space:pre-wrap;line-height:1.5;text-align:left">Preparing…</p></dialog><dialog id="aboutDialog" aria-labelledby="aboutTitle" style="max-width:min(94vw,460px);max-height:80vh;overflow:auto;border:1px solid #5c9e9c;border-radius:14px;background:#1b3035;color:#f1f8f8;padding:20px;box-shadow:0 12px 60px #0009"><h2 id="aboutTitle" style="margin-top:0">KENNY PICKETT? · v4.9.7</h2><p style="color:#c6d5d6;line-height:1.6">Browser prototype v4.9.7. Beat-aligned phrase timeline with one-shot pitch feedback. Adaptive background-noise calibration with dBFS and pitch-confidence feedback. Phrase range follows the selected user instrument. Microphone is optional and off by default. Uses Meta Open Sound CC0 steel-string guitar samples when available, with a synthesized fallback. 37 guitar and 57 piano samples are bundled for offline use; headphones recommended with microphone listening. If silent, check iPhone Silent Mode. Voice command Next is available in supported browsers. Automatic advancement requires microphone listening or the on-screen keyboard. Auto 1X advances after one correct performance; Auto 2X advances after two correct performances total.</p><button id="closeAbout" type="button" style="width:100%;margin-top:15px;padding:12px">Close</button></dialog><dialog id="statsDialog" aria-labelledby="statsTitle" style="max-width:min(94vw,430px);border:1px solid #5c9e9c;border-radius:14px;background:#1b3035;color:#f1f8f8;padding:22px;box-shadow:0 12px 60px #0009"><h2 id="statsTitle" style="margin-top:0">Session Summary</h2><div id="statsBody" style="line-height:1.9"></div><button id="playAgain" type="button" style="width:100%;margin-top:15px;padding:14px;background:#36ad91;color:#092c2a;font-weight:800">Play Again</button><button id="closeStats" type="button" style="width:100%;margin-top:8px;padding:12px">Close</button></dialog><script>
+<div class="mix-row" id="sliderRow"><div class="mix-controls"><label class="vol-item" for="mastervol">Master<input id="mastervol" type="range" min="0" max="100" value="65"><output id="masterval">65</output></label><label class="vol-item divider-before" for="clickvol">Click<input id="clickvol" type="range" min="0" max="100" value="65"><output id="clickval">65</output></label><label class="vol-item" for="melvol">Melody<input id="melvol" type="range" min="0" max="100" value="30"><output id="melval">30</output></label><label class="vol-item divider-before" for="tempo">Tempo<input id="tempo" type="range" min="40" max="180" step="5" value="80"><output id="tempoval">80</output></label><div class="tempo-buttons"><button class="secondary" id="faster" type="button">Faster</button><button class="secondary" id="slower" type="button">Slower</button><button id="aboutVersion" type="button" aria-label="About KENNY PICKETT version 4.9.5">v4.9.8</button></div></div>
+</section><section class="panel"><div class="controls"><button id="startbtn" class="start-button">Start Session</button><button class="secondary stop-button stop-all" id="stopall">End Session</button><button class="secondary pause-button" id="pausebtn">Pause Session</button><button class="secondary next-button" id="next">Next <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m4 5 10 7-10 7V5Z"/><path d="M18 5v14"/></svg></button></div><p id="status">Ready</p><div id="phrase-wrap"><div id="notes" aria-live="polite"></div><button id="reveal" type="button">Show Phrase</button></div></section></main><dialog id="calibrationDialog" aria-labelledby="calibrationTitle" style="max-width:min(94vw,420px);border:1px solid #5c9e9c;border-radius:14px;background:#1b3035;color:#f1f8f8;padding:22px;text-align:center"><h2 id="calibrationTitle">Warm-up Taps</h2><p id="calibrationInstructions">Tap along with the metronome. The first four beats are practice. Keep tapping until your timing is consistent.</p><p id="calibrationStatus" aria-live="polite">Getting ready…</p><button id="calibrationTap" type="button" style="display:block;width:168px;height:168px;border-radius:50%;margin:18px auto;background:#d92632;color:white;font-size:29px;font-weight:900;border:5px solid #ff9097;box-shadow:0 5px 18px #0007;touch-action:manipulation">Tap Me</button><p id="calibrationReadings" aria-live="polite" style="font-size:13px;line-height:1.5;min-height:2em"></p><p id="startupStage" aria-live="polite" style="font-size:12px;color:#d5e7e7;white-space:pre-wrap;line-height:1.5;text-align:left">Preparing…</p></dialog><dialog id="aboutDialog" aria-labelledby="aboutTitle" style="max-width:min(94vw,460px);max-height:80vh;overflow:auto;border:1px solid #5c9e9c;border-radius:14px;background:#1b3035;color:#f1f8f8;padding:20px;box-shadow:0 12px 60px #0009"><h2 id="aboutTitle" style="margin-top:0">KENNY PICKETT? · v4.9.8</h2><p style="color:#c6d5d6;line-height:1.6">Browser prototype v4.9.8. Beat-aligned phrase timeline with one-shot pitch feedback. Adaptive background-noise calibration with dBFS and pitch-confidence feedback. Phrase range follows the selected user instrument. Microphone is optional and off by default. Uses Meta Open Sound CC0 steel-string guitar samples when available, with a synthesized fallback. 37 guitar and 57 piano samples are bundled for offline use; headphones recommended with microphone listening. If silent, check iPhone Silent Mode. Voice command Next is available in supported browsers. Automatic advancement requires microphone listening or the on-screen keyboard. Auto 1X advances after one correct performance; Auto 2X advances after two correct performances total.</p><button id="closeAbout" type="button" style="width:100%;margin-top:15px;padding:12px">Close</button></dialog><dialog id="statsDialog" aria-labelledby="statsTitle" style="max-width:min(94vw,430px);border:1px solid #5c9e9c;border-radius:14px;background:#1b3035;color:#f1f8f8;padding:22px;box-shadow:0 12px 60px #0009"><h2 id="statsTitle" style="margin-top:0">Session Summary</h2><div id="statsBody" style="line-height:1.9"></div><button id="playAgain" type="button" style="width:100%;margin-top:15px;padding:14px;background:#36ad91;color:#092c2a;font-weight:800">Play Again</button><button id="closeStats" type="button" style="width:100%;margin-top:8px;padding:12px">Close</button></dialog><script>
 const $=id=>document.getElementById(id), keys=['C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B'], names=['C','C#','D','Eb','E','F','F#','G','Ab','A','Bb','B']; keys.forEach(k=>{let o=document.createElement('option');o.value=k;o.textContent=k;$('key').append(o)});{const o=document.createElement('option');o.value='Random';o.textContent='Random';$('key').append(o);}$('key').value='G';
 const SETTINGS_KEY='hey-sam-settings-v1';
 const settingIds=['appInstrument','instrument','key','quality','scale','octaves','lockOctave','meter','rhythm','difficulty','count','start','cadence','mastervol','clickvol','melvol','tempo','mode','advance','sessionLimit','listen','timelineNotation','timelineView'];
@@ -177,7 +177,7 @@ function showTapDiagnostic(message){
 
 let transportOrigin=0, transportBeatSeconds=0, firstPhraseScheduled=false;
 const SCORING_HALF_WINDOW=.35;
-let sessionLatencySeconds=0,calibration=null,calibrationTimer=null,calibrationMicPrevious=0,calibrationMicLast=-Infinity;
+let sessionLatencySeconds=0,calibration=null,calibrationTimer=null,calibrationMicPrevious=0,calibrationMicLast=-Infinity,calibrationMicFloor=.0003,calibrationMicArmed=true;
 function scoringPosition(at){
  const elapsed=(at-timelineStart-sessionLatencySeconds)/beatSeconds();
  // Find the closest expected attack, including the upcoming response phrase.
@@ -249,6 +249,7 @@ async function beginCalibration(){
  const bps=60/num('tempo'),start=ctx.currentTime+.5;
  calibration={running:true,start,bps,recent:[],scheduled:0,lastTapBeat:-1};
  $('calibrationStatus').textContent='Get ready · first four clicks are practice';
+ calibrationMicPrevious=0;calibrationMicLast=-Infinity;calibrationMicFloor=.0003;calibrationMicArmed=true;
  $('calibrationReadings').textContent='';
  calibrationTimer=setInterval(()=>{
   const c=calibration;if(!c)return;
@@ -760,10 +761,24 @@ function showMic(now){
  // dBFS is measured from the microphone PCM signal, not a guessed loudness category.
  const rms=result.rms||0;
  if(calibration?.running&&!isKeyboard()){
-  const threshold=Math.max(noiseFloor*5,.008);
-  if(rms>threshold&&rms>calibrationMicPrevious*1.8&&ctx.currentTime-calibrationMicLast>.22){
-   recordCalibrationTap(ctx.currentTime);calibrationMicLast=ctx.currentTime;
+  // Detect an acoustic attack from the microphone waveform, independently of pitch.
+  // A rising edge above the adaptive quiet floor marks a new pluck/strike.
+  // Require a release before the next attack to avoid counting sustained notes.
+  const nowAudio=ctx.currentTime;
+  const floor=Math.max(.00025,calibrationMicFloor);
+  const threshold=Math.max(.0045,floor*4);
+  const rising=rms>threshold && rms>Math.max(calibrationMicPrevious*1.55,floor*4);
+  const separation=Math.max(.18,Math.min(.35,calibration.bps*.40));
+  if(calibrationMicArmed&&rising&&nowAudio-calibrationMicLast>separation){
+   // The analyser frame is sampled after the physical attack; estimate the
+   // centre of its 4096-sample analysis window rather than the RAF timestamp.
+   const estimatedAttack=nowAudio-(micAnalyser.fftSize/(2*ctx.sampleRate));
+   recordCalibrationTap(estimatedAttack);
+   calibrationMicLast=nowAudio;
+   calibrationMicArmed=false;
   }
+  if(rms<Math.max(.003,floor*2.5))calibrationMicArmed=true;
+  if(rms<Math.max(.003,floor*2.5))calibrationMicFloor=calibrationMicFloor*.95+rms*.05;
   calibrationMicPrevious=rms;
  }
  const dbfs=rms>0?20*Math.log10(rms):-100;
@@ -820,7 +835,7 @@ async function startMic(token){
   micStream=stream;micSource=ctx.createMediaStreamSource(stream);micAnalyser=ctx.createAnalyser();micAnalyser.fftSize=4096;micAnalyser.smoothingTimeConstant=0;
   micSource.connect(micAnalyser);micBuffer=new Float32Array(micAnalyser.fftSize);
   noiseFloor=.000035;noiseDb=-89;noiseReady=false;quietSamples=[];lastAnalysis=0;lastPitch=null;pitchVotes=[];prevMicRms=0;lastMicMidi=null;lastMicAt=0;$('micstate').textContent='Microphone active';showMic(performance.now());
- }catch(e){if(session&&token===micSession)$('micstate').textContent=e.name==='NotAllowedError'?'Microphone permission denied':'Microphone unavailable';}
+ }catch(e){if(session&&token===micSession)$('micstate').textContent=e.name==='NotAllowedError'?'Microphone permission denied':'Microphone unavailable';throw e;}
 }
 function stopMic(){micSession++;cancelAnimationFrame(micFrame);micFrame=0;if(micSource){micSource.disconnect();micSource=null;}if(micStream){micStream.getTracks().forEach(t=>t.stop());micStream=null;}micAnalyser=null;micBuffer=null;configureAudioSession('playback');}
 async function requestWakeLock(){
@@ -868,9 +883,14 @@ function reportStartupError(stage,error){
 }
 function showWarmupDialog(){
  try{
-  $('status').textContent='Preparing Warm-up Taps';
+  $('status').textContent='Preparing '+(isKeyboard()?'Warm-up Taps':'Warm-up Notes');
   $('calibrationStatus').textContent='Getting ready…';
   $('calibrationReadings').textContent='';
+  const keyboard=isKeyboard();
+  $('calibrationTitle').textContent=keyboard?'Warm-up Taps':'Warm-up Notes';
+  $('calibrationInstructions').textContent=keyboard?'Tap along with the metronome. The first four beats are practice. Keep tapping until your timing is consistent.':'Wear headphones. Play the same comfortable note on your instrument with each click. Separate the notes so each attack can be heard. First four beats are practice.';
+  $('calibrationTap').hidden=!keyboard;
+  $('calibrationTap').style.display=keyboard?'block':'none';
   startupLog=['Preparing warm-up'];$('startupStage').textContent=startupLog.join('\n');
   const dialog=$('calibrationDialog');if(!dialog.open)dialog.showModal();
  }catch(e){reportStartupError('Opening warm-up',e);}
@@ -903,7 +923,8 @@ async function prepareSessionForCalibration(){
   recentPhraseResults=[];autoAdvancePending=false;sessionPhraseCount=1;completedKeyboardSlots.clear();updatePhraseCounter();sessionBase=null;sessionPhraseHistory.clear();
   initAudio();makePhrase();preloadPhraseSamples();activeMode=$('mode').value;pendingMode=null;melodyStopped=false;countBeats=num('meter');nextTick=ctx.currentTime+.1;setTransport(nextTick);
   session=true;paused=false;showTapDiagnostic('waiting for first tap');timelineEnabled=false;timelineSlot=-1;resetTimeline();
-  const keyboard=isKeyboard(),listening=!keyboard&&$('listen').checked;
+  const keyboard=isKeyboard(),listening=!keyboard;
+  if(listening){$('listen').checked=true;updateMicHint();}
   updateLiveHeight();$('settingsPanel').classList.toggle('session-active',listening||keyboard);$('livePanel').hidden=!(listening||keyboard);
   $('liveNote').textContent='—';$('liveNote').style.opacity='1';$('levelFill').style.width='0';$('levelText').textContent='Input level: —';lastDetectedAt=0;$('liveDetails').textContent='Play a single note on your instrument';
   $('startbtn').classList.add('playing');$('stopall').classList.add('playing');
@@ -912,11 +933,11 @@ async function prepareSessionForCalibration(){
   startupStage('5/6 · '+(listening?'Starting microphone':'Configuring playback'));
   await new Promise(resolve=>requestAnimationFrame(()=>resolve()));
   const token=++micSession;
-  if(listening){configureAudioSession('play-and-record');await startupTimeout(startMic(token),'Microphone startup',8000);if(!session||token!==micSession)throw new Error('Microphone setup interrupted');startVoice();}
+  if(listening){configureAudioSession('play-and-record');await startupTimeout(startMic(token),'Microphone startup',12000);if(!session||token!==micSession||!micAnalyser)throw new Error('Microphone not ready. Check microphone permission and try again.');startVoice();}
   else configureAudioSession('playback');
   if(!timelineNotes.length||!timelineCells.length)throw new Error('Phrase timeline was not built');
   if($('livePanel').hidden && (keyboard||listening))throw new Error('Phrase timeline panel is hidden');
-  startupStage('6/6 · Ready — starting '+(listening?'microphone':'keyboard')+' session');
+  startupStage('6/6 · Ready — starting '+(listening?'microphone warm-up':'keyboard warm-up'));
   await new Promise(resolve=>requestAnimationFrame(()=>resolve()));
   sessionPrepared=true;
   startupInProgress=false;
@@ -939,7 +960,7 @@ async function startWithWarmup(reuse=false){
  }
 }
 $('startbtn').onclick=()=>{void startWithWarmup(false);};
-$('calibrationTap').addEventListener('pointerdown',e=>{if(e.isPrimary===false)return;if(calibration?.running&&ctx)recordCalibrationTap(ctx.currentTime);});
+$('calibrationTap').addEventListener('pointerdown',e=>{if(e.isPrimary===false||!isKeyboard())return;if(calibration?.running&&ctx)recordCalibrationTap(ctx.currentTime);});
 window.addEventListener('resize',()=>{if(session&&($('listen').checked||isKeyboard()))updateLiveHeight();layoutTimeline()});
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&session)requestWakeLock();});
 $('advance').addEventListener('change',()=>{recentPhraseResults=[];if($('advance').value!=='manual'&&!$('listen').checked&&!isKeyboard())$('status').textContent='Automatic advancement requires Listen to My Playing';});
