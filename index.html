@@ -113,9 +113,9 @@
 <div class="settings-row three"><label>Practice Style<select id="mode"><option value="loop">Play Along</option><option value="repeat">Listen and Repeat</option></select></label><label>Advancement<select id="advance"><option value="manual">Manual</option><option value="auto1">Auto 1X Correct</option><option value="auto2">Auto 2X Correct</option></select></label><label>Phrases / session<select id="sessionLimit"><option value="0">Unlimited</option><option value="5">5</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="30">30</option><option value="50">50</option></select></label></div>
 <div class="mic-setting" id="micSetting"><label>Note Recognition <select id="recognition" aria-label="Note recognition sensitivity"><option value="precise">Precise</option><option value="balanced" selected>Balanced</option><option value="forgiving">Forgiving</option></select></label><label for="listen"><input type="checkbox" id="listen"> Listen to My Playing</label><span id="micSettingHint">Microphone Off</span></div>
 <div id="keyboardRow" hidden aria-label="On-screen scale degree keyboard"><div class="keyboard-keys"><button type="button" class="degree-key" data-degree="1" aria-label="Play scale degree 1">1</button><button type="button" class="degree-key" data-degree="2" aria-label="Play scale degree 2">2</button><button type="button" class="degree-key" data-degree="3" aria-label="Play scale degree 3">3</button><button type="button" class="degree-key" data-degree="4" aria-label="Play scale degree 4">4</button><button type="button" class="degree-key" data-degree="5" aria-label="Play scale degree 5">5</button><button type="button" class="degree-key" data-degree="6" aria-label="Play scale degree 6">6</button><button type="button" class="degree-key" data-degree="7" aria-label="Play scale degree 7">7</button><button type="button" class="degree-key" data-degree="8" aria-label="Play scale degree 8">8</button></div></div>
-<div class="mix-row" id="sliderRow"><div class="mix-controls"><label class="vol-item" for="mastervol">Master<input id="mastervol" type="range" min="0" max="100" value="65"><output id="masterval">65</output></label><label class="vol-item divider-before" for="clickvol">Click<input id="clickvol" type="range" min="0" max="100" value="65"><output id="clickval">65</output></label><label class="vol-item" for="melvol">Melody<input id="melvol" type="range" min="0" max="100" value="30"><output id="melval">30</output></label><label class="vol-item divider-before" for="tempo">Tempo<input id="tempo" type="range" min="40" max="180" step="5" value="80"><output id="tempoval">80</output></label><div class="tempo-buttons"><button class="secondary" id="faster" type="button">Faster</button><button class="secondary" id="slower" type="button">Slower</button><button id="aboutVersion" type="button" aria-label="About KENNY PICKETT version 3.7">v3.8</button></div></div>
-</section><section class="panel"><div class="controls"><button id="startbtn" class="start-button">Start Session</button><button class="secondary stop-button stop-all" id="stopall">End Session</button><button class="secondary pause-button" id="pausebtn">Pause Session</button><button class="secondary next-button" id="next">Next <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m4 5 10 7-10 7V5Z"/><path d="M18 5v14"/></svg></button></div><p id="status">Ready</p><div id="phrase-wrap"><div id="notes" aria-live="polite"></div><button id="reveal" type="button">Show Phrase</button></div></section></main><dialog id="aboutDialog" aria-labelledby="aboutTitle" style="max-width:min(94vw,460px);max-height:80vh;overflow:auto;border:1px solid #5c9e9c;border-radius:14px;background:#1b3035;color:#f1f8f8;padding:20px;box-shadow:0 12px 60px #0009"><h2 id="aboutTitle" style="margin-top:0">KENNY PICKETT? · v3.8</h2><p style="color:#c6d5d6;line-height:1.6">Browser prototype v3.8. Beat-aligned phrase timeline with one-shot pitch feedback. Adaptive background-noise calibration with dBFS and pitch-confidence feedback. Phrase range follows the selected user instrument. Microphone is optional and off by default. Uses Meta Open Sound CC0 steel-string guitar samples when available, with a synthesized fallback. 37 guitar and 57 piano samples are bundled for offline use; headphones recommended with microphone listening. If silent, check iPhone Silent Mode. Voice command Next is available in supported browsers. Automatic advancement requires microphone listening or the on-screen keyboard. Auto 1X advances after one correct performance; Auto 2X advances after two correct performances total.</p><button id="closeAbout" type="button" style="width:100%;margin-top:15px;padding:12px">Close</button></dialog><dialog id="statsDialog" aria-labelledby="statsTitle" style="max-width:min(94vw,430px);border:1px solid #5c9e9c;border-radius:14px;background:#1b3035;color:#f1f8f8;padding:22px;box-shadow:0 12px 60px #0009"><h2 id="statsTitle" style="margin-top:0">Session Summary</h2><div id="statsBody" style="line-height:1.9"></div><button id="playAgain" type="button" style="width:100%;margin-top:15px;padding:14px;background:#36ad91;color:#092c2a;font-weight:800">Play Again</button><button id="closeStats" type="button" style="width:100%;margin-top:8px;padding:12px">Close</button></dialog><script>
-const $=id=>document.getElementById(id), keys=['C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B'], names=['C','C#','D','Eb','E','F','F#','G','Ab','A','Bb','B']; keys.forEach(k=>{let o=document.createElement('option');o.value=k;o.textContent=k;$('key').append(o)});$('key').value='G';
+<div class="mix-row" id="sliderRow"><div class="mix-controls"><label class="vol-item" for="mastervol">Master<input id="mastervol" type="range" min="0" max="100" value="65"><output id="masterval">65</output></label><label class="vol-item divider-before" for="clickvol">Click<input id="clickvol" type="range" min="0" max="100" value="65"><output id="clickval">65</output></label><label class="vol-item" for="melvol">Melody<input id="melvol" type="range" min="0" max="100" value="30"><output id="melval">30</output></label><label class="vol-item divider-before" for="tempo">Tempo<input id="tempo" type="range" min="40" max="180" step="5" value="80"><output id="tempoval">80</output></label><div class="tempo-buttons"><button class="secondary" id="faster" type="button">Faster</button><button class="secondary" id="slower" type="button">Slower</button><button id="aboutVersion" type="button" aria-label="About KENNY PICKETT version 3.7">v4.0</button></div></div>
+</section><section class="panel"><div class="controls"><button id="startbtn" class="start-button">Start Session</button><button class="secondary stop-button stop-all" id="stopall">End Session</button><button class="secondary pause-button" id="pausebtn">Pause Session</button><button class="secondary next-button" id="next">Next <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m4 5 10 7-10 7V5Z"/><path d="M18 5v14"/></svg></button></div><p id="status">Ready</p><div id="phrase-wrap"><div id="notes" aria-live="polite"></div><button id="reveal" type="button">Show Phrase</button></div></section></main><dialog id="aboutDialog" aria-labelledby="aboutTitle" style="max-width:min(94vw,460px);max-height:80vh;overflow:auto;border:1px solid #5c9e9c;border-radius:14px;background:#1b3035;color:#f1f8f8;padding:20px;box-shadow:0 12px 60px #0009"><h2 id="aboutTitle" style="margin-top:0">KENNY PICKETT? · v4.0</h2><p style="color:#c6d5d6;line-height:1.6">Browser prototype v4.0. Beat-aligned phrase timeline with one-shot pitch feedback. Adaptive background-noise calibration with dBFS and pitch-confidence feedback. Phrase range follows the selected user instrument. Microphone is optional and off by default. Uses Meta Open Sound CC0 steel-string guitar samples when available, with a synthesized fallback. 37 guitar and 57 piano samples are bundled for offline use; headphones recommended with microphone listening. If silent, check iPhone Silent Mode. Voice command Next is available in supported browsers. Automatic advancement requires microphone listening or the on-screen keyboard. Auto 1X advances after one correct performance; Auto 2X advances after two correct performances total.</p><button id="closeAbout" type="button" style="width:100%;margin-top:15px;padding:12px">Close</button></dialog><dialog id="statsDialog" aria-labelledby="statsTitle" style="max-width:min(94vw,430px);border:1px solid #5c9e9c;border-radius:14px;background:#1b3035;color:#f1f8f8;padding:22px;box-shadow:0 12px 60px #0009"><h2 id="statsTitle" style="margin-top:0">Session Summary</h2><div id="statsBody" style="line-height:1.9"></div><button id="playAgain" type="button" style="width:100%;margin-top:15px;padding:14px;background:#36ad91;color:#092c2a;font-weight:800">Play Again</button><button id="closeStats" type="button" style="width:100%;margin-top:8px;padding:12px">Close</button></dialog><script>
+const $=id=>document.getElementById(id), keys=['C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B'], names=['C','C#','D','Eb','E','F','F#','G','Ab','A','Bb','B']; keys.forEach(k=>{let o=document.createElement('option');o.value=k;o.textContent=k;$('key').append(o)});{const o=document.createElement('option');o.value='Random';o.textContent='Random';$('key').append(o);}$('key').value='G';
 const SETTINGS_KEY='hey-sam-settings-v1';
 const settingIds=['appInstrument','instrument','key','quality','scale','octaves','lockOctave','meter','rhythm','difficulty','count','start','cadence','mastervol','clickvol','melvol','tempo','mode','advance','sessionLimit','listen','timelineNotation','timelineView'];
 try{const saved=JSON.parse(localStorage.getItem(SETTINGS_KEY)||'{}');for(const id of settingIds){if(id==='listen'||id==='lockOctave'){if(saved[id]!==undefined)$(id).checked=saved[id]===true||saved[id]==='true';continue;}if(saved[id]!==undefined&&Array.from($(id).options||[]).some(o=>o.value===String(saved[id]))||saved[id]!==undefined&&$(id).type==='range'&&Number.isFinite(Number(saved[id]))){$(id).value=id==='mode'?({'alternate':'repeat','once':'repeat'}[saved[id]]||String(saved[id])):String(saved[id]);}}}catch(e){console.warn('Could not restore settings',e)}
@@ -134,6 +134,8 @@ function saveSettings(){try{localStorage.setItem(SETTINGS_KEY,JSON.stringify(Obj
 for(const id of settingIds){$(id).addEventListener('input',saveSettings);$(id).addEventListener('change',saveSettings)}
 function updateMicHint(){$('micSettingHint').textContent=$('listen').checked?'Microphone Active':'Microphone Off'}$('listen').addEventListener('change',updateMicHint);updateMicHint();
 
+let phraseTonicBase=null,activePhraseKey='G';
+function phraseRoot(){return keys.indexOf(activePhraseKey);}
 let recentPhraseResults=[],autoAdvancePending=false,keyboardTurnCompleted=false,completedKeyboardSlots=new Set();
 let sessionStats=null,phraseStats=null,voiceRecognition=null,voiceRestart=false;
 const SCORES_KEY="kenny-pickett-top-scores-v1";
@@ -165,10 +167,11 @@ let paused=false,ctx=null, master=null, guitarSamples=new Map(), woodSamples=[],
 const num=id=>Number($(id).value), pick=a=>a[Math.floor(Math.random()*a.length)], clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 let sessionBase=null;
 const sessionPhraseHistory=new Set();
-function phraseSignature(notes,base){return notes.map(n=>(n.midi-base)+':'+n.beats).join('|');}
+function phraseSignature(notes,base){return activePhraseKey+'|'+notes.map(n=>(n.midi-base)+':'+n.beats).join('|');}
 
 function makePhrase(){
- const root=keys.indexOf($('key').value), minor=$('quality').value==='minor';
+ activePhraseKey=$('key').value==='Random'?pick(keys):$('key').value;
+ const root=phraseRoot(), minor=$('quality').value==='minor';
  const scaleSemis=minor?[0,2,3,5,7,8,10]:[0,2,4,5,7,9,11];
  const triad=minor?[0,3,7]:[0,4,7];
  const degrees=({major:scaleSemis,pent:minor?[0,3,5,7,10]:[0,2,4,7,9],triad})[$('scale').value];
@@ -197,6 +200,7 @@ function makePhrase(){
   if(base+12*oct>highest)base-=12;
  }
  if($('lockOctave').checked)sessionBase=base;
+ phraseTonicBase=base; // Keep the actual phrase tonic, even if every note is the upper octave.
 
  for(let n=0;n<=12*oct;n++)if(degrees.includes(n%12))candidates.push(n);
  const starters=candidates.filter(n=>$('start').value==='any'||($('start').value==='tonic'?n%12===0:triad.includes(n%12)));
@@ -225,14 +229,15 @@ function makePhrase(){
  return result;
  }
  let result=drawPhrase(),signature=phraseSignature(result,base);
+ const allSame=notes=>notes.length>1&&notes.every(n=>n.midi===notes[0].midi);
  // Try fresh combinations first; remember note and rhythm patterns regardless of register.
- for(let attempt=0;attempt<1200&&sessionPhraseHistory.has(signature);attempt++){result=drawPhrase();signature=phraseSignature(result,base);}
+ for(let attempt=0;attempt<1200&&(sessionPhraseHistory.has(signature)||allSame(result));attempt++){result=drawPhrase();signature=phraseSignature(result,base);}
  // When the remaining space is small, enumerate valid combinations rather than relying on luck.
- if(sessionPhraseHistory.has(signature)){
+ if(sessionPhraseHistory.has(signature)||allSame(result)){
   const durations={q:[1],qh:[1,2],eqh:[.5,1,2]}[$('rhythm').value];
   const endings=(()=>{const c=$('cadence').value;if(c==='tonic')return candidates.filter(n=>n%12===0);if(c==='chord')return candidates.filter(n=>triad.includes(n%12));if(c==='open'){const preferred=[scaleSemis[1],scaleSemis[3],scaleSemis[6]];return candidates.filter(n=>preferred.includes(n%12));}return candidates;})();
   let found=null,visited=0;const limit=300000;
-  function walk(path){if(found||visited>=limit)return;const i=path.length;if(i===count){visited++;const trial=path.map(([n,d])=>({midi:base+n,beats:d}));if(!sessionPhraseHistory.has(phraseSignature(trial,base)))found=trial;return;}
+  function walk(path){if(found||visited>=limit)return;const i=path.length;if(i===count){visited++;const trial=path.map(([n,d])=>({midi:base+n,beats:d}));if(!allSame(trial)&&!sessionPhraseHistory.has(phraseSignature(trial,base)))found=trial;return;}
    let allowed=i===0?starters:i===count-1?(endings.length?endings:candidates):candidates;
    if(i>0&&$('difficulty').value!=='free'){const max={easy:4,medium:7,hard:12}[$('difficulty').value];const restricted=allowed.filter(n=>Math.abs(n-path[i-1][0])<=max);if(restricted.length)allowed=restricted;}
    for(const n of allowed){for(const d of durations){walk([...path,[n,d]]);if(found||visited>=limit)return;}}
@@ -240,6 +245,8 @@ function makePhrase(){
  }
  // Repeats are permitted only once every allowed pattern has been used.
  if(sessionPhraseHistory.has(signature))sessionPhraseHistory.clear();
+ // If restrictions permit no varied melody, do not loop forever.
+
  sessionPhraseHistory.add(signature);
  phrase=result;phraseBeats=Math.ceil(result.reduce((s,n)=>s+n.beats,0)/num('meter'))*num('meter');renderNotes(base);buildTimeline();
 }
@@ -370,11 +377,10 @@ function click(when,accent){
 }
 function playPhrase(when){let t=when,bps=60/num('tempo');for(const n of phrase){tone(n.midi,t,n.beats*bps,num('melvol')/100*.27);t+=n.beats*bps}}
 function scaleDegree(midi){
- const root=keys.indexOf($('key').value), scale=$('quality').value==='minor'?[0,2,3,5,7,8,10]:[0,2,4,5,7,9,11];
+ const root=phraseRoot(), scale=$('quality').value==='minor'?[0,2,3,5,7,8,10]:[0,2,4,5,7,9,11];
  const offset=((midi-root)%12+12)%12;const i=scale.indexOf(offset);if(i<0)return '–';
  // The upper tonic is scale degree 8, not degree 1.
- const base=phrase.length?Math.min(...phrase.map(n=>n.midi)):midi;
- const tonicBelow=base-((base-root)%12+12)%12;
+ const tonicBelow=phraseTonicBase??(midi-((midi-root)%12+12)%12);
  return offset===0&&midi>=tonicBelow+12?'8':String(i+1);
 }
 function noteLabel(midi){return $('timelineNotation').value==='degree'?scaleDegree(midi):noteNames[(midi%12+12)%12];}
@@ -727,10 +733,11 @@ function isKeyboard(){return $('instrument').value==='On-Screen Keyboard';}
 function updateKeyboardUI(){const active=isKeyboard();$('keyboardRow').hidden=!active;$('micSetting').hidden=active;if(active){$('listen').checked=false;updateMicHint();}if(session){$('settingsPanel').classList.toggle('session-active',active||$('listen').checked);$('livePanel').hidden=!(active||$('listen').checked);}}
 $('instrument').addEventListener('change',updateKeyboardUI);updateKeyboardUI();
 function keyboardBase(){
- const root=keys.indexOf($('key').value);
- const lowest=phrase.length?Math.min(...phrase.map(n=>n.midi)):72;
- // Match the actual phrase tonic octave; never fold degree 8 down to degree 1.
- return root+12*Math.floor((lowest-root)/12);
+ const root=phraseRoot();
+ // The lowest note is not necessarily the tonic: a phrase may contain only upper-octave notes.
+ // Always use the tonic register selected when the phrase was generated.
+ if(phraseTonicBase!==null)return phraseTonicBase;
+ return root+12*Math.floor((72-root)/12);
 }
 function keyboardMidi(degree){const minor=$('quality').value==='minor';const offsets=minor?[0,2,3,5,7,8,10,12]:[0,2,4,5,7,9,11,12];return keyboardBase()+offsets[degree-1];}
 async function loadKeyboardPiano(midi){
