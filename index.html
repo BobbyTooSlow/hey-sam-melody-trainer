@@ -114,8 +114,8 @@
 <div class="settings-row three"><label>Practice Style<select id="mode"><option value="loop">Play Along</option><option value="repeat">Listen and Repeat</option></select></label><label>Advancement<select id="advance"><option value="manual">Manual</option><option value="auto1">Auto 1X Correct</option><option value="auto2">Auto 2X Correct</option></select></label><label>Phrases / session<select id="sessionLimit"><option value="0">Unlimited</option><option value="5">5</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="30">30</option><option value="50">50</option></select></label></div>
 <div class="mic-setting" id="micSetting"><label>Note Recognition <select id="recognition" aria-label="Note recognition sensitivity"><option value="precise">Precise</option><option value="balanced" selected>Balanced</option><option value="forgiving">Forgiving</option></select></label><label for="listen"><input type="checkbox" id="listen"> Listen to My Playing</label><span id="micSettingHint">Microphone Off</span></div>
 <div id="keyboardRow" hidden aria-label="On-screen scale degree keyboard"><div class="keyboard-keys"><button type="button" class="degree-key" data-degree="1" aria-label="Play scale degree 1">1</button><button type="button" class="degree-key" data-degree="2" aria-label="Play scale degree 2">2</button><button type="button" class="degree-key" data-degree="3" aria-label="Play scale degree 3">3</button><button type="button" class="degree-key" data-degree="4" aria-label="Play scale degree 4">4</button><button type="button" class="degree-key" data-degree="5" aria-label="Play scale degree 5">5</button><button type="button" class="degree-key" data-degree="6" aria-label="Play scale degree 6">6</button><button type="button" class="degree-key" data-degree="7" aria-label="Play scale degree 7">7</button><button type="button" class="degree-key" data-degree="8" aria-label="Play scale degree 8">8</button></div></div>
-<div class="mix-row" id="sliderRow"><div class="mix-controls"><label class="vol-item" for="mastervol">Master<input id="mastervol" type="range" min="0" max="100" value="65"><output id="masterval">65</output></label><label class="vol-item divider-before" for="clickvol">Click<input id="clickvol" type="range" min="0" max="100" value="65"><output id="clickval">65</output></label><label class="vol-item" for="melvol">Melody<input id="melvol" type="range" min="0" max="100" value="30"><output id="melval">30</output></label><label class="vol-item divider-before" for="tempo">Tempo<input id="tempo" type="range" min="40" max="180" step="5" value="80"><output id="tempoval">80</output></label><div class="tempo-buttons"><button class="secondary" id="faster" type="button">Faster</button><button class="secondary" id="slower" type="button">Slower</button><button id="aboutVersion" type="button" aria-label="About KENNY PICKETT version 4.7">v4.8</button></div></div>
-</section><section class="panel"><div class="controls"><button id="startbtn" class="start-button">Start Session</button><button class="secondary stop-button stop-all" id="stopall">End Session</button><button class="secondary pause-button" id="pausebtn">Pause Session</button><button class="secondary next-button" id="next">Next <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m4 5 10 7-10 7V5Z"/><path d="M18 5v14"/></svg></button></div><p id="status">Ready</p><div id="phrase-wrap"><div id="notes" aria-live="polite"></div><button id="reveal" type="button">Show Phrase</button></div></section></main><dialog id="aboutDialog" aria-labelledby="aboutTitle" style="max-width:min(94vw,460px);max-height:80vh;overflow:auto;border:1px solid #5c9e9c;border-radius:14px;background:#1b3035;color:#f1f8f8;padding:20px;box-shadow:0 12px 60px #0009"><h2 id="aboutTitle" style="margin-top:0">KENNY PICKETT? · v4.8</h2><p style="color:#c6d5d6;line-height:1.6">Browser prototype v4.8. Beat-aligned phrase timeline with one-shot pitch feedback. Adaptive background-noise calibration with dBFS and pitch-confidence feedback. Phrase range follows the selected user instrument. Microphone is optional and off by default. Uses Meta Open Sound CC0 steel-string guitar samples when available, with a synthesized fallback. 37 guitar and 57 piano samples are bundled for offline use; headphones recommended with microphone listening. If silent, check iPhone Silent Mode. Voice command Next is available in supported browsers. Automatic advancement requires microphone listening or the on-screen keyboard. Auto 1X advances after one correct performance; Auto 2X advances after two correct performances total.</p><button id="closeAbout" type="button" style="width:100%;margin-top:15px;padding:12px">Close</button></dialog><dialog id="statsDialog" aria-labelledby="statsTitle" style="max-width:min(94vw,430px);border:1px solid #5c9e9c;border-radius:14px;background:#1b3035;color:#f1f8f8;padding:22px;box-shadow:0 12px 60px #0009"><h2 id="statsTitle" style="margin-top:0">Session Summary</h2><div id="statsBody" style="line-height:1.9"></div><button id="playAgain" type="button" style="width:100%;margin-top:15px;padding:14px;background:#36ad91;color:#092c2a;font-weight:800">Play Again</button><button id="closeStats" type="button" style="width:100%;margin-top:8px;padding:12px">Close</button></dialog><script>
+<div class="mix-row" id="sliderRow"><div class="mix-controls"><label class="vol-item" for="mastervol">Master<input id="mastervol" type="range" min="0" max="100" value="65"><output id="masterval">65</output></label><label class="vol-item divider-before" for="clickvol">Click<input id="clickvol" type="range" min="0" max="100" value="65"><output id="clickval">65</output></label><label class="vol-item" for="melvol">Melody<input id="melvol" type="range" min="0" max="100" value="30"><output id="melval">30</output></label><label class="vol-item divider-before" for="tempo">Tempo<input id="tempo" type="range" min="40" max="180" step="5" value="80"><output id="tempoval">80</output></label><div class="tempo-buttons"><button class="secondary" id="faster" type="button">Faster</button><button class="secondary" id="slower" type="button">Slower</button><button id="aboutVersion" type="button" aria-label="About KENNY PICKETT version 4.9">v4.9</button></div></div>
+</section><section class="panel"><div class="controls"><button id="startbtn" class="start-button">Start Session</button><button class="secondary stop-button stop-all" id="stopall">End Session</button><button class="secondary pause-button" id="pausebtn">Pause Session</button><button class="secondary next-button" id="next">Next <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m4 5 10 7-10 7V5Z"/><path d="M18 5v14"/></svg></button></div><p id="status">Ready</p><div id="phrase-wrap"><div id="notes" aria-live="polite"></div><button id="reveal" type="button">Show Phrase</button></div></section></main><dialog id="calibrationDialog" aria-labelledby="calibrationTitle" style="max-width:min(94vw,420px);border:1px solid #5c9e9c;border-radius:14px;background:#1b3035;color:#f1f8f8;padding:22px"><h2 id="calibrationTitle">Session Timing Calibration</h2><p>Tap or play along with eight metronome clicks. The first four are practice; the last four measure your timing.</p><p id="calibrationStatus" aria-live="polite">Ready to calibrate</p><button id="calibrationGo" type="button" style="width:100%;padding:13px;background:#36ad91;color:#092c2a;font-weight:800">Start 8-Beat Calibration</button><button id="calibrationSkip" type="button" style="width:100%;padding:13px;margin-top:8px">Skip (0 ms)</button></dialog><dialog id="aboutDialog" aria-labelledby="aboutTitle" style="max-width:min(94vw,460px);max-height:80vh;overflow:auto;border:1px solid #5c9e9c;border-radius:14px;background:#1b3035;color:#f1f8f8;padding:20px;box-shadow:0 12px 60px #0009"><h2 id="aboutTitle" style="margin-top:0">KENNY PICKETT? · v4.9</h2><p style="color:#c6d5d6;line-height:1.6">Browser prototype v4.9. Beat-aligned phrase timeline with one-shot pitch feedback. Adaptive background-noise calibration with dBFS and pitch-confidence feedback. Phrase range follows the selected user instrument. Microphone is optional and off by default. Uses Meta Open Sound CC0 steel-string guitar samples when available, with a synthesized fallback. 37 guitar and 57 piano samples are bundled for offline use; headphones recommended with microphone listening. If silent, check iPhone Silent Mode. Voice command Next is available in supported browsers. Automatic advancement requires microphone listening or the on-screen keyboard. Auto 1X advances after one correct performance; Auto 2X advances after two correct performances total.</p><button id="closeAbout" type="button" style="width:100%;margin-top:15px;padding:12px">Close</button></dialog><dialog id="statsDialog" aria-labelledby="statsTitle" style="max-width:min(94vw,430px);border:1px solid #5c9e9c;border-radius:14px;background:#1b3035;color:#f1f8f8;padding:22px;box-shadow:0 12px 60px #0009"><h2 id="statsTitle" style="margin-top:0">Session Summary</h2><div id="statsBody" style="line-height:1.9"></div><button id="playAgain" type="button" style="width:100%;margin-top:15px;padding:14px;background:#36ad91;color:#092c2a;font-weight:800">Play Again</button><button id="closeStats" type="button" style="width:100%;margin-top:8px;padding:12px">Close</button></dialog><script>
 const $=id=>document.getElementById(id), keys=['C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B'], names=['C','C#','D','Eb','E','F','F#','G','Ab','A','Bb','B']; keys.forEach(k=>{let o=document.createElement('option');o.value=k;o.textContent=k;$('key').append(o)});{const o=document.createElement('option');o.value='Random';o.textContent='Random';$('key').append(o);}$('key').value='G';
 const SETTINGS_KEY='hey-sam-settings-v1';
 const settingIds=['appInstrument','instrument','key','quality','scale','octaves','lockOctave','meter','rhythm','difficulty','count','start','cadence','mastervol','clickvol','melvol','tempo','mode','advance','sessionLimit','listen','timelineNotation','timelineView'];
@@ -165,6 +165,64 @@ function startVoice(){stopVoice();const SR=window.SpeechRecognition||window.webk
 
 let lastScoringNote=-1,timelineStart=0,timelineSlot=-1,timelineCells=[],timelineNotes=[],timelineVerdicts=[],timelineJudged=[],timelineEnabled=false;
 let transportOrigin=0, transportBeatSeconds=0, firstPhraseScheduled=false;
+const SCORING_HALF_WINDOW=.35;
+let sessionLatencySeconds=0,calibration=null,calibrationTimer=null,calibrationMicPrevious=0,calibrationMicLast=-Infinity;
+function scoringPosition(at){
+ const elapsed=(at-timelineStart-sessionLatencySeconds)/beatSeconds();
+ // Find the closest expected attack, including the upcoming response phrase.
+ const nearestSlot=Math.floor(elapsed/phraseBeats);
+ let best=null;
+ for(let slot=Math.max(0,nearestSlot-1);slot<=nearestSlot+1;slot++){
+  if(activeMode==='repeat'&&slot%2===0)continue;
+  for(let i=0;i<timelineNotes.length;i++){
+   const n=timelineNotes[i],previous=i?timelineNotes[i-1]:null,next=timelineNotes[i+1];
+   const spacing=next?next.start-n.start:previous?n.start-previous.start:n.end-n.start;
+   const half=SCORING_HALF_WINDOW*Math.max(.001,spacing);
+   const delta=elapsed-(slot*phraseBeats+n.start);
+   if(Math.abs(delta)<=half && (!best||Math.abs(delta)<Math.abs(best.delta)))best={slot,i,beat:n.start,delta,half};
+  }
+ }
+ return {elapsed,best};
+}
+function recordCalibrationTap(at){
+ const c=calibration;if(!c||!c.running)return;
+ const beat=(at-c.start)/c.bps,idx=Math.round(beat);
+ if(idx<4||idx>7||Math.abs(beat-idx)>.45||c.taps.has(idx))return;
+ c.taps.set(idx,(beat-idx)*c.bps);
+ $('calibrationStatus').textContent='Beat '+(idx+1)+' recorded · '+c.taps.size+' of 4 measured';
+}
+function stopCalibration(){if(calibrationTimer){clearInterval(calibrationTimer);calibrationTimer=null;}calibration=null;}
+function finishCalibration(skip){
+ const c=calibration;let offsets=c?[...c.taps.values()]:[];
+ // Only use complete calibration; an incomplete run is equivalent to Skip.
+ sessionLatencySeconds=!skip&&offsets.length===4?offsets.reduce((a,b)=>a+b,0)/4:0;
+ stopCalibration();$('calibrationDialog').close();
+ if(!session)return;
+ $('status').textContent=offsets.length===4&&!skip?'Calibrated '+Math.round(sessionLatencySeconds*1000)+' ms · starting session':'Calibration skipped · starting session';
+ beginMusicAfterCalibration();
+}
+function beginMusicAfterCalibration(){
+ if(!session||paused||!ctx)return;
+ nextTick=ctx.currentTime+.24;setTransport(nextTick);timelineSlot=-1;
+ timelineEnabled=true;timer=setInterval(()=>{scheduler();timelineClock();},25);scheduler();timelineClock();
+}
+function beginCalibration(){
+ if(!session||!ctx)return;
+ const bps=60/num('tempo'),start=ctx.currentTime+.35;
+ calibration={running:true,start,bps,taps:new Map(),scheduled:0};
+ $('calibrationGo').disabled=true;
+ $('calibrationStatus').textContent='Get ready · first four clicks are practice';
+ calibrationTimer=setInterval(()=>{
+  const c=calibration;if(!c)return;
+  while(c.scheduled<8&&c.start+c.scheduled*c.bps<ctx.currentTime+.30){
+   click(c.start+c.scheduled*c.bps,c.scheduled%num('meter')===0);c.scheduled++;
+  }
+  if(ctx.currentTime>c.start+8*c.bps+.15)finishCalibration(false);
+ },20);
+}
+$('calibrationGo').onclick=beginCalibration;
+$('calibrationSkip').onclick=()=>finishCalibration(true);
+
 function beatSeconds(){return transportBeatSeconds||60/num('tempo');}
 function setTransport(start){transportBeatSeconds=60/num('tempo');transportOrigin=start;nextTick=start;tickIndex=0;timelineStart=start+countBeats*transportBeatSeconds;firstPhraseScheduled=false;}
 let paused=false,ctx=null, master=null, guitarSamples=new Map(), woodSamples=[], timer=null, nextTick=0, tickIndex=0, phrase=[], phraseBeats=4, phaseStart=0, session=false, melodyStopped=false, epoch=0, activeMode='loop', pendingMode=null, countBeats=0, phraseNumber=0;
@@ -448,20 +506,13 @@ function resolveCandidate(i){
 }
 function acceptPitchVote(midi,at,confidence){
  if(!session||paused||!timelineEnabled||!ctx)return;
- const bps=beatSeconds(),elapsed=(at-timelineStart)/bps;if(elapsed<0)return;
- const slot=Math.floor(elapsed/phraseBeats),beat=elapsed%phraseBeats;
- if(slot!==timelineSlot||activeMode==='repeat'&&slot%2===0)return;
- let i=timelineNotes.findIndex(n=>beat>=n.start&&beat<n.end);
- if(i<0||timelineJudged[i])return;
- const n=timelineNotes[i],now=performance.now();
- let c=noteCandidates[i];
- if(!c){c={votes:[],started:now,firstAt:at};noteCandidates[i]=c;}
- // A single pluck is one attempt. Collect a short burst, then lock once.
+ const p=scoringPosition(at),match=p.best;
+ if(!match||match.slot!==timelineSlot||timelineJudged[match.i])return;
+ const i=match.i,n=timelineNotes[i],now=performance.now();
+ let c=noteCandidates[i];if(!c){c={votes:[],started:now,firstAt:at};noteCandidates[i]=c;}
  if(now-c.started>recognitionProfile().window)return;
  c.votes.push({midi,confidence});
- const profile=recognitionProfile();
- // Resolve early only after a stable correct pitch; otherwise allow the note to settle.
- const correctCount=c.votes.filter(v=>v.midi===n.midi).length;
+ const profile=recognitionProfile(),correctCount=c.votes.filter(v=>v.midi===n.midi).length;
  if(correctCount>=profile.correctVotes&&now-c.started>=profile.wait)resolveCandidate(i);
 }
 
@@ -541,7 +592,7 @@ function timelineClock(){
  const bps=beatSeconds(), elapsed=(ctx.currentTime-timelineStart)/bps;
  const slot=elapsed>=0?Math.floor(elapsed/phraseBeats):-1;
  const beat=elapsed>=0?((elapsed%phraseBeats)+phraseBeats)%phraseBeats:-1;
- if(slot!==timelineSlot && !(timelineSlot===slot+1 && elapsed>=0 && (timelineSlot*phraseBeats-elapsed)*bps*1000<=KEYBOARD_EARLY_MS+1)){
+ if(slot!==timelineSlot && !(timelineSlot===slot+1 && (timelineSlot*phraseBeats-elapsed)*bps<=SCORING_HALF_WINDOW*bps+0.001)){
   if(timelineSlot>=0)completePhraseTurn(timelineSlot);
   if(autoAdvancePending){nextPhrase();return;}
   timelineSlot=slot;resetTimeline();paintTimeline();
@@ -671,6 +722,13 @@ function showMic(now){
  const result=paused?null:detectPitch(micBuffer,ctx.sampleRate);
  // dBFS is measured from the microphone PCM signal, not a guessed loudness category.
  const rms=result.rms||0;
+ if(calibration?.running&&!isKeyboard()){
+  const threshold=Math.max(noiseFloor*5,.008);
+  if(rms>threshold&&rms>calibrationMicPrevious*1.8&&ctx.currentTime-calibrationMicLast>.22){
+   recordCalibrationTap(ctx.currentTime);calibrationMicLast=ctx.currentTime;
+  }
+  calibrationMicPrevious=rms;
+ }
  const dbfs=rms>0?20*Math.log10(rms):-100;
  const level=clamp(Math.round((dbfs+100)/60*100),0,100);
  $('levelFill').style.width=level+'%';
@@ -692,7 +750,8 @@ function showMic(now){
   const pitchChanged=lastMicMidi!==null&&result.midi!==lastMicMidi;
   const bps=beatSeconds(),position=(ctx.currentTime-timelineStart)/bps;
   const beat=position>=0?position%phraseBeats:-1;
-  const idx=timelineNotes.findIndex(n=>beat>=n.start&&beat<n.end);
+  const mapped=scoringPosition(ctx.currentTime).best;
+  const idx=mapped?mapped.i:-1;
   const candidate=idx>=0?noteCandidates[idx]:null;
   if(idx>=0&&(candidate||freshAttack||pitchChanged||nowMs-lastMicAt>420))acceptPitchVote(result.midi,ctx.currentTime,result.confidence);
   lastMicMidi=result.midi;lastMicAt=nowMs;
@@ -733,7 +792,7 @@ async function requestWakeLock(){
 }
 function stop(showSummary=false){
  if(session){finishPhraseStats();stopVoice();if(showSummary)saveSessionScore();}if(showSummary)showSessionStats();
- recentPhraseResults=[];autoAdvancePending=false;clearTimeout(sessionStartDelay);sessionStartDelay=null;clearTimeout(sessionEndDelay);sessionEndDelay=null;stopMelodyNow();session=false;paused=false;$('pausebtn').classList.remove('paused');$('pausebtn').textContent='Pause Session';if(ctx&&ctx.state==='suspended')void ctx.resume().catch(()=>{});timelineEnabled=false;clearTimeout(keyboardTapFlashTimer);clearInterval(timer);timer=null;epoch++;stopMic();
+ stopCalibration();if($('calibrationDialog').open)$('calibrationDialog').close();recentPhraseResults=[];autoAdvancePending=false;clearTimeout(sessionStartDelay);sessionStartDelay=null;clearTimeout(sessionEndDelay);sessionEndDelay=null;stopMelodyNow();session=false;paused=false;$('pausebtn').classList.remove('paused');$('pausebtn').textContent='Pause Session';if(ctx&&ctx.state==='suspended')void ctx.resume().catch(()=>{});timelineEnabled=false;clearTimeout(keyboardTapFlashTimer);clearInterval(timer);timer=null;epoch++;stopMic();
  if(wakeLock){const lock=wakeLock;wakeLock=null;lock.release().catch(()=>{});}
  $('livePanel').hidden=true;$('settingsPanel').classList.remove('session-active');
  $('startbtn').classList.remove('playing');$('stopall').classList.remove('playing');$('status').textContent='Stopped';
@@ -751,14 +810,11 @@ $('startbtn').onclick=async()=>{
  const token=++micSession;
  if(listening){configureAudioSession('play-and-record');await startMic(token);if(!session||token!==micSession)return;startVoice();}
  else configureAudioSession('playback');
- // Speech recognition permissions may be presented asynchronously on iOS.
- // Allow time for any remaining browser dialogs before beginning the count-in.
- $('status').textContent='Ready · music begins in about 4 seconds';
- sessionStartDelay=setTimeout(()=>{
-  sessionStartDelay=null;if(!session||paused)return;
-  nextTick=ctx.currentTime+.22;setTransport(nextTick);timelineSlot=-1;
-  timelineEnabled=true;timer=setInterval(()=>{scheduler();timelineClock();},25);scheduler();timelineClock();$('status').textContent='Playing · count-in 1 measure';
- },listening?4000:600);
+ // Offer calibration before the normal count-in; Skip starts immediately.
+ $('calibrationGo').disabled=false;
+ $('calibrationStatus').textContent='Ready · 8 clicks, measure taps 5–8';
+ $('calibrationDialog').showModal();
+
 
 };
 window.addEventListener('resize',()=>{if(session&&($('listen').checked||isKeyboard()))updateLiveHeight();layoutTimeline()});
@@ -799,61 +855,33 @@ function playKeyboardPiano(midi){
  if(!sample)void loadKeyboardPiano(midi);
 }
 // Keyboard-only anticipation allowance; playback and visual beat timing are unchanged.
-const KEYBOARD_EARLY_MS=100;
-let keyboardTapHistory=[];
-let keyboardTapFlashTimer=null;
-function showTapDiagnostic(message){
- const el=$('tapDiagnostic');if(!el)return;
- if(message==='waiting for first tap'){keyboardTapHistory=[];el.textContent='Tap diagnostic: waiting for first tap';return;}
- keyboardTapHistory.push(message);keyboardTapHistory=keyboardTapHistory.slice(-4);
- el.textContent='Tap diagnostic (last '+keyboardTapHistory.length+'): '+keyboardTapHistory.join(' | ');
-}
-function keyboardTapPosition(tappedAt){
- const bps=beatSeconds();
- const rawBeats=(tappedAt-timelineStart)/bps;
- const allowance=KEYBOARD_EARLY_MS/1000/bps;
- // Advance the assignment only within 100 ms of the NEXT integer beat.
- // This includes beat 1 of a new Repeat turn, but not an ordinary Listen turn.
- const upcoming=Math.ceil(rawBeats-1e-9);
- const early=upcoming>=0&&upcoming-rawBeats>0&&upcoming-rawBeats<=allowance+1e-9;
- const candidate=early?upcoming:rawBeats;
- const nextSlot=candidate>=0?Math.floor(candidate/phraseBeats):-1;
- const nextIsResponse=activeMode==='loop'||(activeMode==='repeat'&&nextSlot%2===1);
- const adjusted=early&&nextIsResponse?candidate:rawBeats;
- const slot=adjusted>=0?Math.floor(adjusted/phraseBeats):-1;
- return {rawBeats,slot,beat:adjusted-slot*phraseBeats,shiftMs:(adjusted-rawBeats)*bps*1000};
-}
 function tapDegree(degree){
  if(!isKeyboard()||!session||paused||!ctx){showTapDiagnostic('keyboard inactive / session paused');return;}
- const tappedAt=ctx.currentTime;
- const midi=keyboardMidi(degree);
+ const tappedAt=ctx.currentTime,midi=keyboardMidi(degree);
  playKeyboardPiano(midi);
- const p=keyboardTapPosition(tappedAt);
- const rawBeat=p.rawBeats>=0?((p.rawBeats%phraseBeats)+phraseBeats)%phraseBeats:-1;
- const detail='raw '+(rawBeat+1).toFixed(2)+' → '+(p.beat+1).toFixed(2)+' · slot '+(p.slot+1)+' box '+(Math.floor(p.beat)+1)+(p.shiftMs?' · early '+p.shiftMs.toFixed(0)+'ms':'');
- if(!timelineEnabled){showTapDiagnostic(detail+' · count-in (not scoring yet)');return;}
- if(p.slot<0){showTapDiagnostic(detail+' · count-in');return;}
- // An early tap at the next phrase downbeat must initialize that response
- // before the normal display clock crosses the boundary.
- if(p.slot!==timelineSlot){
-  if(p.slot===timelineSlot+1 && p.shiftMs>0){
+ if(calibration?.running){recordCalibrationTap(tappedAt);return;}
+ if(calibration){showTapDiagnostic('calibration · press Start or Skip');return;}
+ if(!timelineEnabled){showTapDiagnostic('count-in · not scoring');return;}
+ const p=scoringPosition(tappedAt),m=p.best;
+ const raw='raw '+p.elapsed.toFixed(2)+' beats · offset '+Math.round(sessionLatencySeconds*1000)+'ms';
+ if(!m){showTapDiagnostic(raw+' · outside centered window');return;}
+ if(m.slot!==timelineSlot){
+  // Accept slightly early notes for the upcoming response without advancing
+  // the display clock, which must stay tied to the scheduled music.
+  if(m.slot===timelineSlot+1){
    if(timelineSlot>=0)completePhraseTurn(timelineSlot);
-   if(autoAdvancePending){showTapDiagnostic(detail+' · advancing');return;}
-   timelineSlot=p.slot;resetTimeline();paintTimeline();
-  }else timelineClock();
+   if(autoAdvancePending)return;
+   timelineSlot=m.slot;resetTimeline();paintTimeline();
+  }else{showTapDiagnostic(raw+' · phrase transition');return;}
  }
- if(!session||!timelineEnabled||p.slot!==timelineSlot){showTapDiagnostic(detail+' · phrase transition');return;}
- if(activeMode==='repeat'&&p.slot%2===0){showTapDiagnostic(detail+' · Listen phase');return;}
- const i=timelineNotes.findIndex(n=>p.beat>=n.start&&p.beat<n.end);
- if(i<0){showTapDiagnostic(detail+' · rest');return;}
- const cell=Math.floor(p.beat);
+ const i=m.i,cell=Math.floor(m.beat);
  timelineCells.forEach((node,j)=>node.classList.toggle('tap-received',j===cell));
  clearTimeout(keyboardTapFlashTimer);
  keyboardTapFlashTimer=setTimeout(()=>timelineCells.forEach(node=>node.classList.remove('tap-received')),230);
- const target=timelineNotes[i].midi,delta=midi-target;
+ const delta=midi-timelineNotes[i].midi;
  timelineVerdicts[i]=delta===0?'ok':delta<0?'up':'down';timelineJudged[i]=true;
- showTapDiagnostic(detail+' · note '+(i+1)+' · '+(delta===0?'correct':delta<0?'play higher':'play lower'));
- lastScoredText=pitchName(midi)+' (target '+pitchName(target)+')';updateScoredDiagnostic();paintTimeline();
+ showTapDiagnostic(raw+' · slot '+(m.slot+1)+' · box '+(cell+1)+' · '+Math.round(m.delta*beatSeconds()*1000)+'ms · '+(delta===0?'correct':delta<0?'play higher':'play lower'));
+ lastScoredText=pitchName(midi)+' (target '+pitchName(timelineNotes[i].midi)+')';updateScoredDiagnostic();paintTimeline();
 }
 for(const button of document.querySelectorAll('.degree-key')){
  // Score on the initial physical press; ignore only its synthesized click.
